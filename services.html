@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +41,7 @@ body{background:var(--off-white);color:var(--black);font-family:'Montserrat',san
 .loader-logo img{width:clamp(160px,44vw,210px);mix-blend-mode:screen}
 .loader-progress{width:80px;height:1px;background:rgba(198,169,106,0.2);position:relative;overflow:hidden}
 .loader-progress::after{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-100%);animation:progressFill 1.4s ease 0.6s forwards}
-.loader-sub{font-size:var(--t-micro);letter-spacing:4px;color:rgba(221,214,204,0.5);text-transform:uppercase;opacity:0;animation:fadeUp 0.6s ease 1.1s forwards}
+.loader-sub{font-size:var(--t-micro);letter-spacing:4px;color:rgba(221,214,204,0.72);text-transform:uppercase;opacity:0;animation:fadeUp 0.6s ease 1.1s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes progressFill{to{transform:translateX(0)}}
 
@@ -81,7 +79,7 @@ nav.scrolled{
 .nav-right{display:flex;align-items:center;gap:20px}
 .nav-link{font-size:var(--t-micro);font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(221,214,204,0.7);text-decoration:none;transition:color 0.2s}
 .nav-link:hover{color:var(--gold)}
-.nav-book{background:var(--gold);color:var(--black);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 16px;border-radius:1px;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center}
+.nav-book{background:var(--gold);color:var(--black);font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 16px;border-radius:1px;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center}
 .nav-book:hover{background:var(--gold-light)}
 .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
 .nav-hamburger span{width:22px;height:2px;background:rgba(247,243,238,0.9);display:block;transition:all 0.3s;border-radius:1px}
@@ -91,7 +89,7 @@ nav.scrolled{
 .mobile-menu.open{opacity:1;visibility:visible}
 .mobile-menu a{font-size:28px;font-weight:300;letter-spacing:4px;color:var(--linen);text-decoration:none;text-transform:uppercase;transition:color 0.2s}
 .mobile-menu a:hover{color:var(--gold)}
-.menu-close{position:absolute;top:20px;right:24px;font-size:20px;color:rgba(221,214,204,0.5);cursor:pointer;background:none;border:none;font-family:inherit;letter-spacing:1px}
+.menu-close{position:absolute;top:20px;right:24px;font-size:20px;color:rgba(221,214,204,0.72);cursor:pointer;background:none;border:none;font-family:inherit;letter-spacing:1px}
 
 /* HERO */
 .hero{min-height:100svh;background:var(--black);position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
@@ -112,7 +110,7 @@ opacity:0.60}
 .hero-credential-text{font-size:var(--t-micro);font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
 .hero-title{font-size:clamp(46px,12vw,72px);font-weight:300;color:var(--white);line-height:1.0;letter-spacing:-1px;margin-bottom:8px}
 .hero-title strong{font-weight:600;display:block}
-.hero-subtitle{font-size:clamp(13px,3.3vw,13px);font-weight:500;letter-spacing:2.5px;color:rgba(221,214,204,0.6);text-transform:uppercase;margin-bottom:28px;line-height:2}
+.hero-subtitle{font-size:clamp(13px,3.3vw,13px);font-weight:500;letter-spacing:2.5px;color:rgba(221,214,204,0.72);text-transform:uppercase;margin-bottom:28px;line-height:2}
 .hero-cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 .btn-primary{background:var(--gold);color:var(--black);font-size:clamp(13px,3.1vw,12px);font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:16px 28px;border-radius:1px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.25s;font-family:inherit}
 .btn-primary:hover{background:var(--gold-light)}
@@ -122,20 +120,20 @@ opacity:0.60}
 .hero-scroll-line{width:1px;height:50px;background:rgba(221,214,204,0.2);position:relative;overflow:hidden}
 .hero-scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--gold);animation:scrollAnim 1.8s ease infinite}
 @keyframes scrollAnim{to{top:200%}}
-.hero-scroll-label{font-size:var(--t-micro);letter-spacing:3px;color:rgba(221,214,204,0.5);text-transform:uppercase;writing-mode:vertical-rl}
+.hero-scroll-label{font-size:var(--t-micro);letter-spacing:3px;color:rgba(221,214,204,0.72);text-transform:uppercase;writing-mode:vertical-rl}
 
 /* TICKER */
 .ticker{background:var(--gold);padding:11px 0;overflow:hidden;white-space:nowrap}
 .ticker-track{display:inline-flex;animation:ticker 25s linear infinite}
-.ticker-item{font-size:clamp(12px,2.8vw,11px);font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--black);padding:0 28px}
-.ticker-dot{color:rgba(0,0,0,0.3);font-size:12px}
+.ticker-item{font-size:clamp(13px,2.8vw,11px);font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--black);padding:0 28px}
+.ticker-dot{color:rgba(0,0,0,0.3);font-size:15px}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* SECTIONS */
 section{padding:72px 24px}
 .section-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .section-eyebrow-line{width:24px;height:1px;background:var(--gold)}
-.section-eyebrow-text{font-size:clamp(12px,3.1vw,12px);font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold)}
+.section-eyebrow-text{font-size:clamp(13px,3.1vw,12px);font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold)}
 .section-title{font-size:clamp(30px,7vw,44px);font-weight:300;color:var(--black);line-height:1.1;letter-spacing:-0.5px;margin-bottom:6px}
 .section-title strong{font-weight:600}
 .section-title.light{color:var(--white)}
@@ -151,12 +149,12 @@ section{padding:72px 24px}
 .svc-card:hover{background:var(--linen-light)}
 .svc-num{font-size:var(--t-micro);font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:12px;font-family:'Montserrat',sans-serif}
 .svc-name{font-size:clamp(15px,3.8vw,18px);font-weight:400;letter-spacing:0.5px;color:var(--text-on-light-primary);margin-bottom:clamp(5px,1.5vw,8px)}
-.svc-items{font-size:clamp(11px,2.5vw,10px);font-weight:500;color:rgba(0,0,0,0.52);letter-spacing:0.8px;line-height:2.1;text-transform:uppercase}
+.svc-items{font-size:clamp(13px,2.5vw,10px);font-weight:500;color:rgba(0,0,0,0.52);letter-spacing:0.8px;line-height:2.1;text-transform:uppercase}
 .svc-price{font-size:20px;font-weight:300;color:var(--gold);margin-top:14px;letter-spacing:-0.5px}
 .svc-price small{display:none}
 .svc-cta-card{background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 18px}
 .svc-cta-num{font-size:36px;font-weight:300;color:var(--gold);letter-spacing:-1px;margin-bottom:4px}
-.svc-cta-label{font-size:var(--t-micro);letter-spacing:3px;text-transform:uppercase;color:rgba(221,214,204,0.5);margin-bottom:16px}
+.svc-cta-label{font-size:var(--t-micro);letter-spacing:3px;text-transform:uppercase;color:rgba(221,214,204,0.72);margin-bottom:16px}
 
 /* BEFORE AFTER */
 .ba-section{background:var(--black);padding:72px 0}
@@ -164,7 +162,7 @@ section{padding:72px 24px}
 .ba-swipe-hint{display:flex;align-items:center;gap:10px;margin-top:10px}
 .ba-swipe-line{width:20px;height:1px;background:rgba(198,169,106,0.4)}
 .ba-swipe-text{font-size:var(--t-micro);letter-spacing:2px;color:rgba(221,214,204,0.72);text-transform:uppercase}
-.ba-swipe-arrow{font-size:14px;color:rgba(198,169,106,0.5);animation:nudge 1.6s ease infinite}
+.ba-swipe-arrow{font-size:15px;color:rgba(198,169,106,0.5);animation:nudge 1.6s ease infinite}
 @keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
 
 /* FEATURED SLIDER */
@@ -211,7 +209,7 @@ section{padding:72px 24px}
 .deal-badge-main{font-size:18px;font-weight:300;color:var(--gold);line-height:1}
 .deal-badge-sub{font-size:var(--t-micro);letter-spacing:1.5px;color:rgba(221,214,204,0.75);text-transform:uppercase;margin-top:1px}
 .deal-body{flex:1}
-.deal-title{font-size:13px;font-weight:600;letter-spacing:0.5px;color:var(--black);margin-bottom:4px}
+.deal-title{font-size:15px;font-weight:600;letter-spacing:0.5px;color:var(--black);margin-bottom:4px}
 .deal-desc{font-size:var(--t-caption);color:var(--text-on-light-secondary);line-height:1.7;margin-bottom:8px}
 .deal-tag{font-size:var(--t-micro);font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:8px 14px;border-radius:20px;background:var(--linen);color:rgba(0,0,0,0.5);display:inline-block;min-height:36px;line-height:20px}
 .deal-tag.hot{background:rgba(133,41,47,0.1);color:var(--burgundy)}
@@ -231,7 +229,7 @@ section{padding:72px 24px}
 .review-star{width:clamp(11px,3vw,13px);height:clamp(11px,3vw,13px);background:var(--gold);clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
 .review-text{font-size:var(--t-body-lg);font-weight:300;font-style:italic;color:rgba(236,230,222,0.90);line-height:1.7;margin-bottom:14px;letter-spacing:0.2px}
 .review-meta{display:flex;align-items:center;gap:10px}
-.review-avatar{width:36px;height:36px;border-radius:50%;background:rgba(198,169,106,0.12);border:1px solid rgba(198,169,106,0.25);display:flex;align-items:center;justify-content:center;font-size:clamp(12px,3vw,14px);font-weight:700;color:var(--gold)}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:rgba(198,169,106,0.12);border:1px solid rgba(198,169,106,0.25);display:flex;align-items:center;justify-content:center;font-size:clamp(13px,3vw,14px);font-weight:700;color:var(--gold)}
 .review-name{font-size:clamp(13px,3.5vw,15px);font-weight:600;color:rgba(247,243,238,0.95);letter-spacing:0.2px}
 .review-service{font-size:var(--t-micro);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(198,169,106,0.70);margin-top:2px}
 
@@ -266,19 +264,19 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 .footer-social{display:flex;gap:10px;margin-bottom:28px}
 .social-icon{width:38px;height:38px;border:1px solid rgba(221,214,204,0.18);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.2s;color:rgba(221,214,204,0.75)}
 .social-icon:hover{border-color:var(--gold);color:var(--gold)}
-.footer-legal{font-size:var(--t-micro);color:rgba(221,214,204,0.58);letter-spacing:0.5px;line-height:2}
+.footer-legal{font-size:var(--t-micro);color:rgba(221,214,204,0.72);letter-spacing:0.5px;line-height:2}
 .footer-divider{height:1px;background:rgba(255,255,255,0.04);margin-bottom:24px}
 
 /* STICKY BAR */
 .sticky-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(6,4,2,0.96);backdrop-filter:blur(24px);border-top:1px solid rgba(198,169,106,0.10);padding:8px 16px;display:flex;align-items:center;justify-content:space-between;z-index:300;transform:translateY(100%);transition:transform 0.4s ease}
 .sticky-bar.up{transform:translateY(0)}
 .sticky-left{display:flex;flex-direction:column;gap:2px}
-.sticky-name{font-size:clamp(12px,3vw,13px);font-weight:600;color:var(--text-on-dark-primary);letter-spacing:0.5px}
-.sticky-sub{font-size:12px;font-weight:500;letter-spacing:1.5px;color:rgba(221,214,204,0.50);text-transform:uppercase}
+.sticky-name{font-size:clamp(13px,3vw,13px);font-weight:600;color:var(--text-on-dark-primary);letter-spacing:0.5px}
+.sticky-sub{font-size:15px;font-weight:500;letter-spacing:1.5px;color:rgba(221,214,204,0.72);text-transform:uppercase}
 .sticky-right{display:flex;gap:8px;align-items:center}
 .sticky-wa{width:40px;height:40px;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.2s}
 .sticky-wa:hover{background:rgba(37,211,102,0.15)}
-.sticky-book{background:var(--gold);color:var(--black);font-size:clamp(12px,2.9vw,11px);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 22px;border-radius:1px;text-decoration:none;white-space:nowrap;transition:background 0.2s;font-family:inherit}
+.sticky-book{background:var(--gold);color:var(--black);font-size:clamp(13px,2.9vw,11px);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:12px 22px;border-radius:1px;text-decoration:none;white-space:nowrap;transition:background 0.2s;font-family:inherit}
 .sticky-book:hover{background:var(--gold-light)}
 
 /* BURGUNDY ACCENT */
@@ -309,11 +307,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   .booking-actions{flex-direction:row}
 }
 /* Ultrawide */
-@media(min-width:1440px){
-  nav,.hero-content,section{max-width:1400px;margin-left:auto;margin-right:auto}
-  nav{left:0;right:0}
-  .hero-content{width:100%;max-width:1400px}
-}
+@media(min-width:1440px){nav,.hero-content,section{padding-left:clamp(60px,7vw,100px);padding-right:clamp(60px,7vw,100px)}nav{left:0;right:0}}
 /* ── END RESPONSIVE ─────────────────────────────────────── */
 
 /* REVIEW PLATFORM TAGS */
@@ -326,7 +320,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 /* RECOGNITION */
 /* BOOKING ACTIONS */
 .booking-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(18px,4vw,24px)}
-.book-action-btn{display:inline-flex;align-items:center;gap:7px;padding:clamp(11px,2.8vw,13px) clamp(14px,3.5vw,20px);border-radius:2px;font-size:clamp(12px,2.8vw,11px);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.22s;font-family:inherit;min-height:42px;cursor:pointer;border:none;white-space:nowrap}
+.book-action-btn{display:inline-flex;align-items:center;gap:7px;padding:clamp(11px,2.8vw,13px) clamp(14px,3.5vw,20px);border-radius:2px;font-size:clamp(13px,2.8vw,11px);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.22s;font-family:inherit;min-height:42px;cursor:pointer;border:none;white-space:nowrap}
 .book-action-btn--primary{background:var(--gold);color:var(--black)}
 .book-action-btn--primary:hover{background:var(--gold-light)}
 .book-action-btn--wa{background:transparent;color:rgba(0,0,0,0.72);border:1px solid rgba(0,0,0,0.14)}
@@ -339,14 +333,14 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 .review-links{display:flex;align-items:center;gap:12px;margin-top:clamp(20px,5vw,28px);flex-wrap:wrap}
 .review-ext-link{font-size:var(--t-caption);font-weight:500;color:rgba(221,214,204,0.65);text-decoration:none;letter-spacing:0.3px;transition:color 0.2s}
 .review-ext-link:hover{color:var(--gold)}
-.review-links-sep{color:rgba(221,214,204,0.25);font-size:12px}
+.review-links-sep{color:rgba(221,214,204,0.72);font-size:15px}
 
 /* LOYALTY PERKS */
 .loyalty-perks{display:flex;flex-direction:column;gap:clamp(10px,2.5vw,14px);margin:clamp(18px,4vw,26px) 0;padding-left:4px}
 .loyalty-perk-item{display:flex;align-items:baseline;gap:10px;font-size:clamp(13px,3.2vw,15px);color:rgba(240,235,228,0.88);line-height:1.5}
-.loyalty-perk-icon{color:var(--gold);font-size:12px;flex-shrink:0;margin-top:1px}
+.loyalty-perk-icon{color:var(--gold);font-size:15px;flex-shrink:0;margin-top:1px}
 .loyalty-accent strong{font-weight:600}
-.svc-pmu-note{font-size:12px;font-weight:600;color:rgba(198,169,106,0.72);letter-spacing:1px;text-transform:uppercase;margin-top:clamp(8px,2vw,12px);line-height:1.6}
+.svc-pmu-note{font-size:15px;font-weight:600;color:rgba(198,169,106,0.72);letter-spacing:1px;text-transform:uppercase;margin-top:clamp(8px,2vw,12px);line-height:1.6}
 
 /* ── ARTIST CARDS ───────────────────────────────────────── */
 .about-section{background:var(--off-white)}
@@ -379,7 +373,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 /* Content */
 .artist-content{display:flex;flex-direction:column;gap:0}
 .artist-tag{
-  font-size:clamp(11px,2.5vw,10px);
+  font-size:clamp(13px,2.5vw,10px);
   font-weight:700;letter-spacing:3px;text-transform:uppercase;
   background:var(--gold);color:var(--black);
   display:inline-block;padding:4px 10px;border-radius:2px;
@@ -393,7 +387,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   margin-bottom:4px;line-height:1;
 }
 .artist-title{
-  font-size:clamp(11px,2.6vw,11px);
+  font-size:clamp(13px,2.6vw,11px);
   font-weight:600;letter-spacing:2px;text-transform:uppercase;
   color:rgba(0,0,0,0.38);
   margin-bottom:clamp(14px,3.5vw,20px);
@@ -426,11 +420,11 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   margin-top:clamp(14px,3.5vw,20px);
   padding-top:clamp(14px,3.5vw,20px);
   border-top:1px solid rgba(0,0,0,0.07);
-  font-size:clamp(11px,2.5vw,11px);
+  font-size:clamp(13px,2.5vw,11px);
   font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
   color:rgba(0,0,0,0.42);
 }
-.artist-cred-sep{color:var(--gold);font-size:10px}
+.artist-cred-sep{color:var(--gold);font-size:15px}
 
 /* Tablet: portrait photo */
 @media(min-width:540px){
@@ -458,8 +452,8 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 /* FOOTER CREDIT */
 .footer-credit{
   margin-top:16px;
-  font-size:11px;
-  color:rgba(221,214,204,0.50);
+  font-size:15px;
+  color:rgba(221,214,204,0.72);
   letter-spacing:0.3px;
   line-height:1.8;
 }
@@ -504,7 +498,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 }
 
 .review-verified{
-  font-size:10px;
+  font-size:15px;
   font-weight:600;
   letter-spacing:0.5px;
   color:rgba(198,169,106,0.60);
@@ -538,7 +532,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   background:linear-gradient(135deg,rgba(198,169,106,0.03) 0%,var(--white) 100%);
 }
 .kala-edit-label{
-  font-size:clamp(10px,2.3vw,9px);
+  font-size:clamp(12px,2.3vw,9px);
   font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
   color:var(--gold);margin-bottom:8px;
 }
@@ -558,7 +552,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   letter-spacing:-0.5px;
 }
 .kala-edit-points{
-  font-size:clamp(11px,2.5vw,10px);
+  font-size:clamp(13px,2.5vw,10px);
   font-weight:600;letter-spacing:1.5px;
   text-transform:uppercase;color:rgba(198,169,106,0.75);
   margin-top:8px;
@@ -576,9 +570,9 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   letter-spacing:-0.5px;
 }
 .kala-edit-cta-sub{
-  font-size:clamp(11px,2.5vw,10px);
+  font-size:clamp(13px,2.5vw,10px);
   font-weight:600;letter-spacing:2px;
-  text-transform:uppercase;color:rgba(221,214,204,0.55);
+  text-transform:uppercase;color:rgba(221,214,204,0.72);
   margin-top:4px;
 }
 
@@ -612,7 +606,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   color:rgba(0,0,0,0.50);line-height:1.5;margin-bottom:6px;
 }
 .client-offer-tag{
-  display:inline-block;font-size:clamp(10px,2.3vw,9px);
+  display:inline-block;font-size:clamp(12px,2.3vw,9px);
   font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
   background:rgba(133,41,47,0.08);color:var(--burgundy);
   padding:3px 8px;border-radius:2px;
@@ -671,14 +665,14 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   margin-bottom:4px;
 }
 .why-stat-label{
-  font-size:clamp(12px,2.8vw,12px);
+  font-size:clamp(13px,2.8vw,12px);
   font-weight:600;
   color:rgba(247,243,238,0.85);
   letter-spacing:0.3px;
   margin-bottom:2px;
 }
 .why-stat-sub{
-  font-size:clamp(11px,2.5vw,10px);
+  font-size:clamp(13px,2.5vw,10px);
   color:rgba(221,214,204,0.75);
   letter-spacing:0.5px;
   text-transform:uppercase;
@@ -695,7 +689,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   margin-top:clamp(20px,5vw,28px);
 }
 .why-kala-link{
-  font-size:clamp(12px,3vw,13px);
+  font-size:clamp(13px,3vw,13px);
   font-weight:600;
   color:rgba(198,169,106,0.75);
   text-decoration:none;
@@ -718,7 +712,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 
 .page-hero{background:var(--black);padding:clamp(100px,18vh,140px) clamp(20px,5vw,60px) clamp(40px,8vh,64px);position:relative;overflow:hidden}
 .page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(198,169,106,0.3),transparent)}
-.page-hero-eyebrow{font-size:clamp(11px,2.6vw,11px);font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:clamp(10px,2.5vw,16px)}
+.page-hero-eyebrow{font-size:clamp(13px,2.6vw,11px);font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:clamp(10px,2.5vw,16px)}
 .page-hero-title{font-size:clamp(28px,6vw,52px);font-weight:300;color:var(--white);line-height:1.05;letter-spacing:-1px;margin-bottom:clamp(12px,3vw,20px)}
 .page-hero-title strong{font-weight:700;display:block}
 .page-hero-sub{font-size:clamp(13px,3.2vw,15px);color:rgba(221,214,204,0.65);max-width:520px;line-height:1.7;margin-bottom:clamp(20px,5vw,32px)}
@@ -728,24 +722,24 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 .services-category{margin-bottom:clamp(36px,7vw,56px)}
 .services-category:last-child{margin-bottom:0}
 .svc-cat-header{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(14px,3.5vw,22px);padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,0.07)}
-.svc-cat-num{font-size:clamp(12px,2.8vw,12px);font-weight:700;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
+.svc-cat-num{font-size:clamp(13px,2.8vw,12px);font-weight:700;letter-spacing:3px;color:var(--gold);text-transform:uppercase}
 .svc-cat-name{font-size:clamp(19px,4.8vw,26px);font-weight:300;color:var(--black);letter-spacing:-0.3px}
 .svc-cat-name strong{font-weight:600}
 .svc-cat-desc{font-size:var(--t-body);color:rgba(0,0,0,0.55);line-height:1.7;max-width:560px;margin-bottom:clamp(14px,3.5vw,22px)}
 .svc-list{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(0,0,0,0.07);border-radius:4px;overflow:hidden}
 .svc-list-item{background:var(--white);padding:clamp(11px,2.8vw,15px) clamp(13px,3.2vw,18px);transition:background 0.2s}
 .svc-list-item:hover{background:var(--linen-light)}
-.svc-list-item-name{font-size:clamp(12px,3vw,14px);font-weight:400;color:rgba(0,0,0,0.82)}
-.svc-list-item-note{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(198,169,106,0.75);margin-top:2px}
+.svc-list-item-name{font-size:clamp(13px,3vw,14px);font-weight:400;color:rgba(0,0,0,0.82)}
+.svc-list-item-note{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(198,169,106,0.75);margin-top:2px}
 .svc-pmu-callout{background:var(--black);border-radius:4px;padding:clamp(18px,4.5vw,26px);margin-top:clamp(14px,3.5vw,20px);border-left:2px solid var(--gold)}
 .svc-pmu-callout-title{font-size:clamp(14px,3.5vw,17px);font-weight:300;color:var(--white);margin-bottom:7px}
 .svc-pmu-callout-title strong{font-weight:600;color:var(--gold)}
 .svc-pmu-callout-desc{font-size:var(--t-body);color:rgba(221,214,204,0.70);line-height:1.7;margin-bottom:12px}
-.svc-pmu-callout-note{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(198,169,106,0.65)}
+.svc-pmu-callout-note{font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(198,169,106,0.65)}
 .svc-booking-strip{background:var(--black);padding:clamp(32px,6vw,52px) clamp(20px,5vw,60px);text-align:center}
 .svc-booking-strip h2{font-size:clamp(20px,5vw,32px);font-weight:300;color:var(--white);margin-bottom:8px}
 .svc-booking-strip h2 strong{font-weight:600}
-.svc-booking-strip p{font-size:var(--t-body);color:rgba(221,214,204,0.60);margin-bottom:clamp(18px,4.5vw,26px)}
+.svc-booking-strip p{font-size:var(--t-body);color:rgba(221,214,204,0.72);margin-bottom:clamp(18px,4.5vw,26px)}
 .svc-booking-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 @media(max-width:479px){.svc-list{grid-template-columns:1fr}}
 @media(min-width:1024px){.services-page{max-width:1100px;margin-left:auto;margin-right:auto}}
@@ -777,7 +771,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
   margin-bottom:clamp(32px,5vw,48px);
 }
 .footer-join-eyebrow{
-  font-size:10px;font-weight:700;letter-spacing:4px;
+  font-size:15px;font-weight:700;letter-spacing:4px;
   text-transform:uppercase;color:rgba(198,169,106,0.6);
   margin-bottom:14px;
 }
@@ -794,7 +788,7 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 }
 .footer-join-btn{
   display:inline-flex;align-items:center;gap:10px;
-  font-size:11px;font-weight:700;letter-spacing:2.5px;
+  font-size:15px;font-weight:700;letter-spacing:2.5px;
   text-transform:uppercase;padding:13px 32px;
   border:1.5px solid rgba(198,169,106,0.5);
   color:var(--gold);background:transparent;
@@ -804,16 +798,16 @@ footer{background:#0a0806;padding:clamp(40px,8vw,56px) clamp(20px,5vw,28px) 120p
 .join-popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:8500;align-items:center;justify-content:center;padding:20px}
 .join-popup-overlay.active{display:flex}
 .join-popup{background:#0a0802;border:1px solid rgba(198,169,106,0.22);max-width:580px;width:100%;padding:clamp(32px,5vw,52px);position:relative;max-height:90vh;overflow-y:auto}
-.join-popup-close{position:absolute;top:14px;right:18px;background:none;border:none;color:rgba(221,214,204,0.35);font-size:24px;cursor:pointer;line-height:1;transition:color 0.2s}
+.join-popup-close{position:absolute;top:14px;right:18px;background:none;border:none;color:rgba(221,214,204,0.72);font-size:24px;cursor:pointer;line-height:1;transition:color 0.2s}
 .join-popup-close:hover{color:var(--gold)}
-.join-popup-eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(198,169,106,0.7);margin-bottom:12px;text-align:center}
+.join-popup-eyebrow{font-size:15px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(198,169,106,0.7);margin-bottom:12px;text-align:center}
 .join-popup-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,34px);font-weight:300;color:var(--linen);text-align:center;line-height:1.2;margin-bottom:8px}
 .join-popup-divider{width:32px;height:1px;background:rgba(198,169,106,0.35);margin:18px auto 28px}
 .join-roles{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .join-role{border:1px solid rgba(198,169,106,0.2);padding:24px 20px;text-align:left}
 .join-role-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--linen);margin-bottom:10px;line-height:1.2}
-.join-role-desc{font-size:13px;color:rgba(221,214,204,0.55);line-height:1.75;margin-bottom:20px}
-.join-role-btn{display:inline-flex;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(198,169,106,0.3);padding-bottom:2px;transition:border-color 0.2s}
+.join-role-desc{font-size:15px;color:rgba(221,214,204,0.72);line-height:1.75;margin-bottom:20px}
+.join-role-btn{display:inline-flex;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(198,169,106,0.3);padding-bottom:2px;transition:border-color 0.2s}
 .join-role-btn:hover{border-color:var(--gold)}
 @media(max-width:520px){.join-roles{grid-template-columns:1fr}}
 footer{text-align:center}
@@ -840,30 +834,30 @@ footer > *:not(.footer-logo){max-width:1400px;margin-left:auto;margin-right:auto
 .join-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9000;align-items:center;justify-content:center;padding:20px}
 .join-overlay.active{display:flex}
 .join-modal{background:#0a0802;border:1px solid rgba(198,169,106,0.25);max-width:520px;width:100%;padding:clamp(32px,5vw,48px);position:relative;max-height:90vh;overflow-y:auto}
-.join-modal-close{position:absolute;top:14px;right:18px;background:none;border:none;color:rgba(221,214,204,0.4);font-size:24px;cursor:pointer;transition:color 0.2s}
+.join-modal-close{position:absolute;top:14px;right:18px;background:none;border:none;color:rgba(221,214,204,0.72);font-size:24px;cursor:pointer;transition:color 0.2s}
 .join-modal-close:hover{color:var(--gold)}
-.join-modal-eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(198,169,106,0.7);margin-bottom:12px;text-align:center}
+.join-modal-eyebrow{font-size:15px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(198,169,106,0.7);margin-bottom:12px;text-align:center}
 .join-modal-title{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,32px);font-weight:300;color:var(--linen);text-align:center;line-height:1.2;margin-bottom:8px}
 .join-modal-title em{font-style:italic;color:var(--gold)}
 .join-divider{width:32px;height:1px;background:rgba(198,169,106,0.35);margin:16px auto 24px}
 .join-roles{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
 .join-role-btn{background:transparent;border:1px solid rgba(198,169,106,0.25);padding:18px 16px;cursor:pointer;text-align:left;transition:all 0.2s;width:100%}
 .join-role-btn:hover,.join-role-btn.active{background:rgba(198,169,106,0.08);border-color:var(--gold)}
-.join-role-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(198,169,106,0.6);margin-bottom:8px}
+.join-role-tag{font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(198,169,106,0.6);margin-bottom:8px}
 .join-role-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--linen);line-height:1.2}
 .join-form{display:none;flex-direction:column;gap:12px;margin-top:8px}
 .join-form.visible{display:flex}
-.join-form-title{font-size:14px;font-weight:600;color:var(--linen);margin-bottom:4px}
-.join-input{background:#0d0b08;border:1px solid rgba(198,169,106,0.2);color:var(--linen);font-size:13px;padding:10px 14px;font-family:'Montserrat',sans-serif;outline:none;transition:border-color 0.2s;width:100%;box-sizing:border-box}
+.join-form-title{font-size:15px;font-weight:600;color:var(--linen);margin-bottom:4px}
+.join-input{background:#0d0b08;border:1px solid rgba(198,169,106,0.2);color:var(--linen);font-size:15px;padding:10px 14px;font-family:'Montserrat',sans-serif;outline:none;transition:border-color 0.2s;width:100%;box-sizing:border-box}
 .join-input:focus{border-color:rgba(198,169,106,0.5)}
-.join-input::placeholder{color:rgba(221,214,204,0.35)}
+.join-input::placeholder{color:rgba(221,214,204,0.72)}
 .join-textarea{resize:vertical;min-height:80px}
-.join-contact-row{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:8px;font-size:12px;color:rgba(221,214,204,0.5)}
+.join-contact-row{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:8px;font-size:15px;color:rgba(221,214,204,0.72)}
 .join-contact-row a{color:rgba(198,169,106,0.7);text-decoration:none}
 .join-contact-row a:hover{color:var(--gold)}
-.join-submit{background:var(--gold);color:var(--black);border:none;padding:12px 28px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:background 0.2s;margin-top:4px}
+.join-submit{background:var(--gold);color:var(--black);border:none;padding:12px 28px;font-size:15px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:background 0.2s;margin-top:4px}
 .join-submit:hover{background:#d4b86a}
-.join-back{background:none;border:none;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(198,169,106,0.5);cursor:pointer;padding:0;margin-top:4px;transition:color 0.2s}
+.join-back{background:none;border:none;font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(198,169,106,0.5);cursor:pointer;padding:0;margin-top:4px;transition:color 0.2s}
 .join-back:hover{color:var(--gold)}
 @media(max-width:480px){.join-roles{grid-template-columns:1fr}}</style>
 
@@ -949,79 +943,11 @@ footer > *:not(.footer-logo){max-width:1400px;margin-left:auto;margin-right:auto
       <div class="svc-cat-header"><span class="svc-cat-num">01</span><h2 class="svc-cat-name">The Brow <strong>Bar</strong></h2></div>
       <p class="svc-cat-desc">Mona's specialty. Precision threading, shaping, and enhancement — designed for your face, never a template.</p>
       <div class="svc-list">
-        <div class="svc-list-item"><div class="svc-list-item-name">Brow Threading <a href="/brow-threading" style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-decoration:none;text-transform:uppercase">Explore →</a></div></div>
-        <div class="svc-list-item"><div><div class="svc-list-item-name">Brow Shaping (Custom Design)</div></div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Brow Tint</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Henna Brows</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Brow Lamination <a href="/brow-lamination" style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-decoration:none;text-transform:uppercase">Explore →</a></div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Brow Lamination + Tint</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Brow Lamination + Threading</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Men's Brow Grooming</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Teen Brow Shaping</div></div>
-      </div>
-    </div>
-    <div class="services-category reveal" data-delay="1">
-      <div class="svc-cat-header"><span class="svc-cat-num">02</span><h2 class="svc-cat-name">The Lash <strong>Lounge</strong></h2></div>
-      <p class="svc-cat-desc">Lifted, defined, luminous. Our lash treatments enhance your natural lashes for weeks of effortless beauty.</p>
-      <div class="svc-list">
-        <div class="svc-list-item"><div class="svc-list-item-name">Keratin Lash Lift <a href="/lash-lift" style="font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-decoration:none;text-transform:uppercase">Explore →</a></div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Lash Tint</div></div>
-        <div class="svc-list-item"><div><div class="svc-list-item-name">Keratin Lash Lift + Tint</div><div class="svc-list-item-note">Most popular</div></div></div>
-      </div>
-    </div>
-    <div class="services-category reveal" data-delay="1">
-      <div class="svc-cat-header"><span class="svc-cat-num">03</span><h2 class="svc-cat-name">Skin <strong>Rituals</strong></h2></div>
-      <p class="svc-cat-desc">Results-driven facials for every skin type. Glow, clarity, hydration, and anti-aging — all under one roof.</p>
-      <div class="svc-list">
-        <div class="svc-list-item"><div class="svc-list-item-name">Signature Facial</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Deep Pore Detox Facial</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Hydration Boost Facial</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Anti-Aging Facial</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Acne Treatment Facial</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Dermaplane Facial</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Teen Facial</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Gentlemen's Facial</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Head Massage</div></div>
-      </div>
-    </div>
-    <div class="services-category reveal" data-delay="1">
-      <div class="svc-cat-header"><span class="svc-cat-num">04</span><h2 class="svc-cat-name">Waxing <strong>Studio</strong></h2></div>
-      <p class="svc-cat-desc">Face and body waxing with a gentle, precise approach. Smooth results every time.</p>
-      <div class="svc-list">
-        <div class="svc-list-item"><div class="svc-list-item-name">Eyebrow Wax</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Upper Lip</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Chin</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Sideburns</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Full Face</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Underarm</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Bikini</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Brazilian</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Half Legs</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Full Legs</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Half Arms</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Full Arms</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Nape Wax</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Back Wax</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Chest Wax</div></div>
-      </div>
-    </div>
-    <div class="services-category reveal" data-delay="1">
-      <div class="svc-cat-header"><span class="svc-cat-num">05</span><h2 class="svc-cat-name">Aesthetic <strong>Studio</strong></h2></div>
-      <p class="svc-cat-desc">Semi-permanent artistry. Kala Studio works with certified master artists for microblading and advanced PMU services.</p>
-      <div class="svc-list">
-        <div class="svc-list-item"><div class="svc-list-item-name">Microblading</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Phi Shading</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Powder Brows</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Annual Touch-Up</div></div>
-        <div class="svc-list-item"><div class="svc-list-item-name">Microblading Correction</div></div>
+        
+        
         <div class="svc-list-item"><div class="svc-list-item-name">Color Correction</div></div>
       </div>
-      <div class="svc-pmu-callout">
-        <div class="svc-pmu-callout-title">Interested in <strong>Microblading or PMU?</strong></div>
-        <div class="svc-pmu-callout-desc">These services require a consultation before booking. We'll walk you through the process, expected results, and what to prepare.</div>
-        <div class="svc-pmu-callout-note">Free consultation — call (747) 222-7462</div>
-      <a href="/microblading" style="display:inline-block;margin-top:14px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(198,169,106,0.4);padding-bottom:2px">Learn about Microblading &amp; PMU →</a>
-      </div>
+      
     </div>
   </div>
   <div class="svc-booking-strip">
@@ -1049,7 +975,6 @@ footer > *:not(.footer-logo){max-width:1400px;margin-left:auto;margin-right:auto
     <a href="/brow-lamination">Brow Lamination</a>
     <a href="/facials">Facials &amp; Skin Rituals</a>
     <a href="/waxing">Waxing</a>
-    <a href="/microblading">Microblading &amp; PMU</a>
     <a href="/signature-services">Signature Combos</a>
     <a href="/privacy-policy">Privacy Policy</a>
     <a href="/terms">Terms &amp; Conditions</a>
@@ -1309,428 +1234,7 @@ document.getElementById('joinPopup').addEventListener('click',function(e){
 
 
 
-<script>
-// ── KALA STUDIO CHATBOT v3 — KEYWORD + MENU HYBRID ───────────────────────────
 
-const KALA_KB = [
-  // Location
-  { keys: ['location','address','where','find','directions','map','parking','park'], category: 'location', optionIndex: 0 },
-  { keys: ['hours','open','close','schedule','sunday','saturday','monday','time','when'], category: 'location', optionIndex: 1 },
-  { keys: ['parking','park'], category: 'location', optionIndex: 2 },
-  { keys: ['thousand oaks'], category: 'location', optionIndex: 3 },
-  { keys: ['calabasas'], category: 'location', optionIndex: 4 },
-  { keys: ['agoura'], category: 'location', optionIndex: 5 },
-  // Services
-  { keys: ['threading','thread','brow','brows','eyebrow','shape','arch'], category: 'services', optionIndex: 0 },
-  { keys: ['lamination','laminate','fluffy','brushed','feather'], category: 'services', optionIndex: 1 },
-  { keys: ['lash lift','lash','keratin lash','lift','korean lash'], category: 'services', optionIndex: 2 },
-  { keys: ['facial','facials','skin','glow','acne','aging','dermaplaning','radiance'], category: 'services', optionIndex: 3 },
-  { keys: ['wax','waxing','brazilian','bikini','legs','underarm','body wax','lip wax'], category: 'services', optionIndex: 4 },
-  { keys: ['microblading','pmu','permanent','phi','powder brows','tattoo','breezy'], category: 'services', optionIndex: 5 },
-  { keys: ['popular','best','most popular','recommend','first time','new'], category: 'services', optionIndex: 6 },
-  { keys: ['combo','combine','package','multiple','together'], category: 'services', optionIndex: 7 },
-  { keys: ['men','man','guys','male'], category: 'services', optionIndex: 8 },
-  // Booking
-  { keys: ['book','booking','appointment','schedule','reserve','how to book'], category: 'booking', optionIndex: 0 },
-  { keys: ['same day','today','tonight','available','availability'], category: 'booking', optionIndex: 1 },
-  { keys: ['advance','ahead','early','how far'], category: 'booking', optionIndex: 2 },
-  { keys: ['cancel','cancellation','reschedule','change','move'], category: 'booking', optionIndex: 3 },
-  { keys: ['consultation','consult','microblading appointment'], category: 'booking', optionIndex: 4 },
-  { keys: ['prepare','before','preparation','beforehand'], category: 'booking', optionIndex: 5 },
-  { keys: ['late','running late','delay'], category: 'booking', optionIndex: 6 },
-  // Pricing
-  { keys: ['price','cost','how much','pricing','charge','rate','fee'], category: 'pricing', optionIndex: 0 },
-  { keys: ['threading price','thread cost','brow price'], category: 'pricing', optionIndex: 0 },
-  { keys: ['lamination price','lamination cost'], category: 'pricing', optionIndex: 1 },
-  { keys: ['lash price','lift price','lash cost'], category: 'pricing', optionIndex: 2 },
-  { keys: ['facial price','facial cost','skin price'], category: 'pricing', optionIndex: 3 },
-  { keys: ['wax price','waxing price','wax cost','brazilian price'], category: 'pricing', optionIndex: 4 },
-  { keys: ['microblading price','pmu price','permanent makeup price'], category: 'pricing', optionIndex: 5 },
-  { keys: ['combo price','package price','signature price'], category: 'pricing', optionIndex: 6 },
-  { keys: ['discount','sale','deal','cheap','afford','less expensive'], category: 'pricing', optionIndex: 7 },
-  // Walk-ins
-  { keys: ['walk in','walk-in','walkin','without appointment','no appointment','drop in'], category: 'walkins', optionIndex: 0 },
-  { keys: ['wait','wait time','how long wait'], category: 'walkins', optionIndex: 2 },
-  // Gift cards
-  { keys: ['gift card','giftcard','gift','present','birthday gift','mothers day'], category: 'giftcards', optionIndex: 0 },
-  // Promos
-  { keys: ['promo','promotion','discount','deal','offer','special','2x1','bring a friend','friend','new client'], category: 'promos', optionIndex: 0 },
-  // Careers
-  { keys: ['job','hire','hiring','career','work','apply','artist position','chair rental','rent chair'], category: 'careers', optionIndex: 0 },
-];
-
-const KALA_BOT = {
-  greeting: "Hi! I'm <strong>Kala</strong> ✨<br>How can I help you today?<br><span style='font-size:12px;opacity:0.85'>Type a question or choose a topic below.</span>",
-
-  categories: [
-    { id: 'location', icon: '📍', label: 'Find Us' },
-    { id: 'services', icon: '✨', label: 'Our Services' },
-    { id: 'booking', icon: '📅', label: 'Booking' },
-    { id: 'pricing', icon: '💰', label: 'Pricing' },
-    { id: 'promos', icon: '🎉', label: 'Deals & Promos' },
-    { id: 'walkins', icon: '🚶', label: 'Walk-ins' },
-    { id: 'giftcards', icon: '🎁', label: 'Gift Cards' },
-    { id: 'careers', icon: '💼', label: 'Careers' },
-  ],
-
-  flows: {
-    location: {
-      question: "What would you like to know about finding us?",
-      options: [
-        { label: "Where are you located?", answer: "We're at <strong>30825 Thousand Oaks Blvd, Westlake Village CA 91362</strong> — at North Ranch Gateway, right next to TJ Maxx. Free parking right outside.<div style='margin-top:12px'><a href='https://maps.app.goo.gl/M9bwnQEsvBEVMaq77' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Open in Google Maps →</a></div>" },
-        { label: "What are your hours?", answer: "<strong>Mon – Thu:</strong> 9:00 AM – 6:00 PM<br><strong>Friday:</strong> 10:00 AM – 6:00 PM<br><strong>Saturday:</strong> 10:00 AM – 4:00 PM<br><strong>Sunday:</strong> Closed<br><br>Walk-ins welcome — booking ahead guarantees your spot.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book an Appointment →</button></div>" },
-        { label: "Is there parking?", answer: "Yes — free parking right at the door at North Ranch Gateway, next to TJ Maxx. Plenty of space, easy in and out.<div style='margin-top:12px'><a href='https://maps.app.goo.gl/M9bwnQEsvBEVMaq77' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Get Directions →</a></div>" },
-        { label: "How far from Thousand Oaks?", answer: "Right on Thousand Oaks Blvd — most clients arrive in under 10 minutes. Easy access from the 101.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
-        { label: "How far from Calabasas?", answer: "About 10–15 minutes from Calabasas off the 101.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
-        { label: "How far from Agoura Hills?", answer: "About 10 minutes west on Thousand Oaks Blvd. Many of our regulars come from Agoura Hills.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
-      ]
-    },
-
-    services: {
-      question: "Which service are you curious about?",
-      options: [
-        { label: "Brow Threading", answer: "Our signature service — precision shaping using a thin cotton thread that removes hair at the follicle one strand at a time.<br><br>✔ Sharper lines than waxing<br>✔ No chemicals — safe for sensitive skin and retinol users<br>✔ Results last 3–5 weeks<div style='margin-top:12px'><a href='/brow-threading' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Learn More →</a></div><div style='margin-top:6px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Threading →</button></div>" },
-        { label: "Brow Lamination", answer: "Restructures your brow hairs upward for that full, fluffy, brushed-up look — 6–8 weeks.<br><br>✔ Includes threading to shape and define<br>✔ Perfect for sparse or unruly brows<br>✔ Add a tint for even more definition<div style='margin-top:12px'><a href='/brow-lamination' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Learn More →</a></div><div style='margin-top:6px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Lamination →</button></div>" },
-        { label: "Keratin Lash Lift & Tint", answer: "Our <strong>Keratin Lash Lift</strong> uses professional-grade keratin and Korean technique to curl, strengthen, and condition your natural lashes — wider, more awake eyes with zero extensions.<br><br>✔ Keratin formula strengthens while lifting<br>✔ Results last 6–8 weeks<br>✔ Zero maintenance — no curler needed<br>✔ Mascara optional after 24 hours<div style='margin-top:12px'><a href='/lash-lift' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Learn More →</a></div><div style='margin-top:6px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Keratin Lash Lift →</button></div>" },
-        { label: "Facials & Skin Rituals", answer: "Four targeted, results-driven treatments:<br><br><strong>Glow Boost Express</strong> (30 min) — quick radiance<br><strong>Signature Radiance</strong> (60 min) — full glow<br><strong>Clarifying Complexion</strong> — acne-prone skin<br><strong>Anti-Aging Treatment</strong> — firmness & fine lines<div style='margin-top:12px'><a href='/facials' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Learn More →</a></div><div style='margin-top:6px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book a Facial →</button></div>" },
-        { label: "Waxing", answer: "Full facial and body waxing menu:<br><br><strong>Facial:</strong> brows, lip, chin, cheeks, forehead, full face<br><strong>Body:</strong> underarm, arms, legs, stomach, back, bikini, Brazilian, and more<div style='margin-top:12px'><a href='/waxing' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>View Full Menu →</a></div><div style='margin-top:6px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Waxing →</button></div>" },
-        { label: "Microblading & PMU", answer: "Performed by a <strong>certified Phi Artist</strong> — the highest international standard.<br><br>✔ PhiBrows Microblading<br>✔ Powder Brows / PhiShading<br>✔ Breezy Brows<br>✔ Annual Touch-Up<br>✔ <strong>Free consultation — always first</strong><div style='margin-top:12px'><a href='/microblading' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Learn More →</a></div><div style='margin-top:6px'><a href='https://wa.me/18053000328?text=Hi! I am interested in a microblading consultation at Kala Studio.' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Book Free Consultation →</a></div>" },
-        { label: "What's your most popular?", answer: "Brow threading is our #1. Most loved combos:<br><br>✔ <strong>Keratin Lash Lift + Tint</strong> — clients call it life-changing<br>✔ <strong>Lamination + Threading + Tint</strong> — the full brow transformation<br>✔ <strong>Threading + Lash Lift</strong> — the Kala classic<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
-        { label: "Can I combine services?", answer: "Absolutely — popular combos:<br><br>✔ Threading + Keratin Lash Lift<br>✔ Lamination + Threading + Tint<br>✔ Facial + Threading<br>✔ Full wax + Brow service<br><br>Just mention it when booking.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book a Combo →</button></div>" },
-        { label: "Do you serve men?", answer: "Yes — Men's Brow Grooming, ear and nose waxing, and facial waxing. All are welcome at Kala.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
-        { label: "View all services", answer: "We offer brow threading, lamination, Keratin Lash Lift & Tint, facials, waxing, microblading, and signature combos — all in Westlake Village.<div style='margin-top:12px'><a href='/services' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Full Services Menu →</a></div>" },
-      ]
-    },
-
-    booking: {
-      question: "What do you need to know about booking?",
-      options: [
-        { label: "How do I book?", answer: "Book right here — it takes 60 seconds:<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Online Now →</button></div><div style='margin-top:8px'><a href='https://wa.me/18053000328' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Or WhatsApp Us →</a></div><div style='margin-top:6px;text-align:center;font-size:12px;color:rgba(221,214,204,0.75)'>Also available by phone: (747) 222-7462</div>" },
-        { label: "Can I book same day?", answer: "Same-day bookings are available when we have openings. Check real-time availability here:<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Check Today's Availability →</button></div>" },
-        { label: "How far in advance?", answer: "Threading, lash lift, lamination: 2–3 days is usually plenty.<br>Microblading consultation: 1–2 weeks recommended.<br><br>Saturdays fill up fast — book early!<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
-        { label: "Can I cancel or reschedule?", answer: "Yes — please give us at least <strong>24 hours notice</strong>. Reschedule through your booking confirmation or reach us on WhatsApp.<div style='margin-top:12px'><a href='https://wa.me/18053000328?text=Hi! I need to reschedule my Kala appointment.' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>WhatsApp to Reschedule →</a></div>" },
-        { label: "Do I need a consult for microblading?", answer: "Always — a <strong>free initial consultation</strong> comes first. We assess your skin, discuss your goals, and make sure you're the right candidate before any work begins.<div style='margin-top:12px'><a href='https://wa.me/18053000328?text=Hi! I would like to book a microblading consultation at Kala Studio.' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Book Free Consultation →</a></div>" },
-        { label: "What should I do before?", answer: "<strong>Threading:</strong> Let brows grow 2–3 weeks. Clean skin.<br><strong>Keratin Lash Lift:</strong> No mascara or lash serum. Remove contacts.<br><strong>Lamination:</strong> No oily products around brows.<br><strong>Waxing:</strong> Hair ¼ inch min. Gentle exfoliate 24h before.<br><strong>Facials:</strong> Tell us about recent skin treatments.<br><strong>Microblading:</strong> We brief you fully at consultation." },
-        { label: "What if I'm running late?", answer: "Let us know on WhatsApp — we'll do our best to accommodate you. 15+ minutes late may require rescheduling.<div style='margin-top:12px'><a href='https://wa.me/18053000328?text=Hi! I am running late for my Kala appointment.' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>WhatsApp Us →</a></div>" },
-      ]
-    },
-
-    pricing: {
-      question: "Which pricing are you looking for?",
-      options: [
-        { label: "Brow Threading", answer: "<strong>Threading:</strong> from $18<br><strong>Brows + Tint:</strong> $45<br><strong>Brows + Lip + Chin:</strong> $32<br><strong>Full Face:</strong> $49 · Full Face+Neck: $55<br>Individual areas from $10<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Threading →</button></div>" },
-        { label: "Brow Lamination", answer: "<strong>Lamination (incl. threading):</strong> $95<br><strong>Lamination + Threading + Tint:</strong> $105<br><strong>Henna Brows (incl. threading):</strong> $50<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Lamination →</button></div>" },
-        { label: "Keratin Lash Lift", answer: "<strong>Keratin Lash Lift:</strong> $105<br><strong>Keratin Lash Lift + Tint:</strong> $115<br><strong>Eyelash Tint only:</strong> $40<br><strong>Lash Extensions:</strong> $125<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Keratin Lash Lift →</button></div>" },
-        { label: "Facials", answer: "<strong>Glow Boost Express (30 min):</strong> $60<br><strong>Signature Radiance (60 min):</strong> $90<br><strong>Clarifying Complexion:</strong> $90<br><strong>Anti-Aging Treatment:</strong> $95<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book a Facial →</button></div>" },
-        { label: "Waxing", answer: "<strong>Facial:</strong> Lip $12 · Chin $14 · Brows $20 · Full Face $60<br><strong>Body:</strong> Underarm $25 · Arms $45 · Full Legs $75 · Brazilian $65 · Full Body $235<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Waxing →</button></div>" },
-        { label: "Microblading & PMU", answer: "<strong>PhiBrows Microblading:</strong> $499<br><strong>Powder Brows / PhiShading:</strong> $599<br><strong>Breezy Brows:</strong> $599<br><strong>Annual Touch-Up:</strong> $199<br><strong>Consultation:</strong> Free<div style='margin-top:12px'><a href='https://wa.me/18053000328?text=Hi! I am interested in microblading at Kala Studio.' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Book Free Consultation →</a></div>" },
-        { label: "Signature Combos", answer: "<strong>Lamination + Threading:</strong> $95<br><strong>Lamination + Threading + Tint:</strong> $105<br><strong>Keratin Lash Lift + Tint:</strong> $115<br><strong>Threading + Tint:</strong> $45<br><strong>Brow + Lip + Chin:</strong> $32<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book a Combo →</button></div>" },
-        { label: "Do you have discounts?", answer: "We don't discount regularly — we believe in consistent quality and fair pay for our artists.<br><br>Check our current deals below 👇 and follow <strong>@mykalastudio</strong> on Instagram for updates.<div style='margin-top:12px'><button onclick=\"kalaBotSelectCategory('promos','Deals & Promos')\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>View Current Deals →</button></div>" },
-      ]
-    },
-
-    promos: {
-      question: "Here's what we currently have for you 🎉",
-      options: [
-        { label: "New clients — Book online & save", answer: "New to Kala? <strong>Book online for the first time and get a special welcome offer</strong> — our way of saying thanks for choosing us.<br><br>Just book through our online system and the discount applies automatically at checkout.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book & Claim Offer →</button></div>" },
-        { label: "Bring a Friend — 2x1", answer: "Bring a friend to Kala and <strong>both of you save</strong> — our Bring a Friend deal applies to select services when you book together.<br><br>Book both appointments at the same time and mention it in the notes, or WhatsApp us to coordinate.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Together →</button></div><div style='margin-top:6px'><a href='https://wa.me/18053000328?text=Hi! I want to bring a friend and use the 2x1 offer.' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Coordinate on WhatsApp →</a></div>" },
-        { label: "Signature Combos — best value", answer: "Our Signature Combos are permanently our best-value offerings — expertly paired services at a bundled price:<br><br><strong>Lamination + Threading:</strong> $95<br><strong>Lamination + Threading + Tint:</strong> $105<br><strong>Keratin Lash Lift + Tint:</strong> $115<br><strong>Threading + Tint:</strong> $45<br><strong>Brow + Lip + Chin:</strong> $32<br><br>These are always available — no coupon needed.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book a Combo →</button></div>" },
-        { label: "Any other deals or specials?", answer: "Follow us on <strong>Instagram @mykalastudio</strong> — we announce limited-time specials there first. Our email and WhatsApp list also gets early access to offers.<div style='margin-top:12px'><a href='https://www.instagram.com/mykalastudio' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Follow @mykalastudio →</a></div><div style='margin-top:6px'><a href='https://wa.me/18053000328?text=Hi! I would like to be notified of Kala deals and specials.' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Join WhatsApp List →</a></div>" },
-      ]
-    },
-
-    walkins: {
-      question: "What would you like to know about walk-ins?",
-      options: [
-        { label: "Are walk-ins welcome?", answer: "Yes — always welcome! For quick services we can usually take you right away or with a short wait. To guarantee your spot and skip the wait, booking takes 60 seconds.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book & Skip the Wait →</button></div>" },
-        { label: "What services can I walk in for?", answer: "Best for quick services:<br><br>✔ Brow Threading<br>✔ Upper Lip / Chin Threading<br>✔ Brow Tint<br>✔ Quick Facial Waxing<br><br>For lash lifts, lamination, facials, and microblading — booking ahead is recommended.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book a Spot →</button></div>" },
-        { label: "What's the wait time?", answer: "It varies. Weekday mornings are typically most available. Saturdays tend to be busiest.<br><br>A quick WhatsApp before you come gets you a real-time estimate.<div style='margin-top:12px'><a href='https://wa.me/18053000328?text=Hi! I am thinking of walking in today. Do you have availability?' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Check Availability on WhatsApp →</a></div>" },
-        { label: "Book vs walk in?", answer: "Booking guarantees your time slot and zero wait. Walk-ins are welcome but may need to wait during busy times.<br><br>60 seconds to book — worth it.<div style='margin-top:12px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book in 60 Seconds →</button></div>" },
-      ]
-    },
-
-    giftcards: {
-      question: "What would you like to know about gift cards?",
-      options: [
-        { label: "Do you sell gift cards?", answer: "Yes! Perfect for birthdays, Mother's Day, or any occasion. Purchase directly on our website.<div style='margin-top:12px'><button onclick=\"var g=document.getElementById('giftcard-button-992062');if(g)g.click()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Get a Gift Card →</button></div>" },
-        { label: "How do I purchase?", answer: "Click below — choose your amount, and it's delivered digitally, instantly.<div style='margin-top:12px'><button onclick=\"var g=document.getElementById('giftcard-button-992062');if(g)g.click()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Buy a Gift Card →</button></div>" },
-        { label: "Can it be used for any service?", answer: "Yes — applicable to any service: threading, lash lift, lamination, facials, waxing, or microblading.<div style='margin-top:12px'><button onclick=\"var g=document.getElementById('giftcard-button-992062');if(g)g.click()\" style='background:var(--gold);color:var(--black);border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Get a Gift Card →</button></div>" },
-        { label: "Do they expire?", answer: "For the current gift card terms please reach out — we're happy to answer quickly.<div style='margin-top:12px'><a href='https://wa.me/18053000328?text=Hi! I have a question about Kala gift cards.' target='_blank' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Ask Us on WhatsApp →</a></div>" },
-      ]
-    },
-
-    careers: {
-      question: "What would you like to know about joining us?",
-      options: [
-        { label: "Are you hiring?", answer: "Yes — always looking for exceptional artists:<br><br>✔ <strong>Brow Threading Artist</strong> — licensed cosmetologist or esthetician, threading experience required<br>✔ <strong>Hair Stylist — Chair Rental</strong> — licensed stylist with clientele" },
-        { label: "Apply for Brow Artist", answer: "Send portfolio and CV to <strong>hello@mykalastudio.com</strong> — subject: <em>Brow Artist Application</em><div style='margin-top:12px'><a href='mailto:hello@mykalastudio.com?subject=Brow Artist Application — Kala Studio&body=Hi Kala Team, I would like to apply for the Brow Threading Artist position. Please find my portfolio and CV attached.' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Send Application →</a></div>" },
-        { label: "Inquire about Chair Rental", answer: "Send to <strong>hello@mykalastudio.com</strong> — subject: <em>Chair Rental Inquiry</em>. Include your portfolio and a bit about your clientele.<div style='margin-top:12px'><a href='mailto:hello@mykalastudio.com?subject=Chair Rental Inquiry — Kala Studio' style='display:block;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:8px;border:1px solid rgba(198,169,106,0.3)'>Send Inquiry →</a></div>" },
-        { label: "What's it like at Kala?", answer: "Premium studio, clients who value quality, a team of rockstars in their craft. If you take your work seriously, Kala is where you belong." },
-      ]
-    }
-  }
-};
-
-// ── UI ────────────────────────────────────────────────────────────────────────
-(function() {
-  var currentCategory = null;
-
-  function createBot() {
-    var css = `
-      .kb-toggle{position:fixed;bottom:90px;right:20px;z-index:8000;width:52px;height:52px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(198,169,106,0.4);display:flex;align-items:center;justify-content:center;transition:all 0.25s}
-      .kb-toggle:hover{background:#d4b86a;transform:scale(1.05)}
-      .kb-toggle svg{width:24px;height:24px;fill:var(--black)}
-      .kb-badge{position:absolute;top:-4px;right:-4px;width:16px;height:16px;border-radius:50%;background:#e74c3c;border:2px solid #fff;display:none}
-      .kb-win{position:fixed;bottom:155px;right:20px;z-index:8000;width:340px;max-height:560px;background:var(--black);border:1px solid rgba(198,169,106,0.25);box-shadow:0 16px 48px rgba(0,0,0,0.5);display:none;flex-direction:column;overflow:hidden;border-radius:2px}
-      .kb-win.open{display:flex}
-      .kb-head{padding:14px 18px;background:#0d0b08;border-bottom:1px solid rgba(198,169,106,0.15);display:flex;justify-content:space-between;align-items:center}
-      .kb-head-l{display:flex;align-items:center;gap:10px}
-      .kb-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#a8893d);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--black);font-family:'Cormorant Garamond',serif}
-      .kb-name{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--linen)}
-      .kb-status{font-size:11px;color:rgba(221,214,204,0.8);display:flex;align-items:center;gap:5px;margin-top:2px}
-      .kb-dot{width:6px;height:6px;border-radius:50%;background:#2ecc71;display:inline-block}
-      .kb-x{background:none;border:none;color:rgba(221,214,204,0.4);cursor:pointer;font-size:22px;line-height:1;padding:0;transition:color 0.2s}
-      .kb-x:hover{color:var(--gold)}
-      .kb-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;max-height:320px;scrollbar-width:thin;scrollbar-color:rgba(198,169,106,0.2) transparent}
-      .kb-msg{max-width:90%;font-size:13px;line-height:1.65;padding:10px 14px;animation:kbFade 0.2s ease}
-      @keyframes kbFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-      .kb-msg.bot{background:#0d0b08;color:rgba(221,214,204,0.95);border:1px solid rgba(198,169,106,0.12);align-self:flex-start;border-radius:0 8px 8px 8px}
-      .kb-msg.usr{background:rgba(198,169,106,0.15);color:var(--linen);align-self:flex-end;border-radius:8px 0 8px 8px;border:1px solid rgba(198,169,106,0.2)}
-      .kb-input-row{padding:10px 14px;border-top:1px solid rgba(198,169,106,0.1);display:flex;gap:8px}
-      .kb-input{flex:1;background:#0d0b08;border:1px solid rgba(198,169,106,0.4);color:var(--linen);font-size:12px;padding:8px 12px;font-family:'Montserrat',sans-serif;outline:none;border-radius:2px;transition:border-color 0.2s}
-      .kb-input:focus{border-color:rgba(198,169,106,0.5)}
-      .kb-input::placeholder{color:rgba(221,214,204,0.6)}
-      .kb-send{background:var(--gold);border:none;color:var(--black);width:36px;height:36px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;border-radius:2px;flex-shrink:0;transition:background 0.2s}
-      .kb-send:hover{background:#d4b86a}
-      .kb-opts{padding:0 14px 12px;display:flex;flex-direction:column;gap:5px;max-height:180px;overflow-y:auto}
-      .kb-btn{background:transparent;border:1px solid rgba(198,169,106,0.35);color:rgba(221,214,204,0.92);font-size:12px;padding:8px 12px;cursor:pointer;text-align:left;transition:all 0.18s;font-family:'Montserrat',sans-serif;border-radius:2px;display:flex;align-items:center;gap:7px}
-      .kb-btn:hover{background:rgba(198,169,106,0.08);border-color:rgba(198,169,106,0.5);color:var(--gold)}
-      .kb-foot{padding:8px 14px;border-top:1px solid rgba(198,169,106,0.1);display:flex;justify-content:space-between;align-items:center}
-      .kb-back{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(198,169,106,0.75);background:none;border:none;cursor:pointer;transition:color 0.2s;padding:0}
-      .kb-back:hover{color:var(--gold)}
-      .kb-wa{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);text-decoration:none;opacity:0.85;transition:opacity 0.2s}
-      .kb-wa:hover{opacity:1}
-      .kb-typing{display:flex;align-items:center;gap:4px;padding:10px 14px;background:#0d0b08;border:1px solid rgba(198,169,106,0.12);align-self:flex-start;border-radius:0 8px 8px 8px}
-      .kb-typing span{width:5px;height:5px;border-radius:50%;background:rgba(198,169,106,0.5);animation:kbType 1s infinite}
-      .kb-typing span:nth-child(2){animation-delay:0.15s}
-      .kb-typing span:nth-child(3){animation-delay:0.3s}
-      @keyframes kbType{0%,80%,100%{opacity:0.3;transform:scale(0.8)}40%{opacity:1;transform:scale(1)}}
-      .kb-no-match{font-size:13px;color:rgba(221,214,204,0.6);font-style:italic}
-      @media(max-width:400px){.kb-win{width:calc(100vw - 24px);right:12px}}
-    `;
-    var s = document.createElement('style');
-    s.textContent = css;
-    document.head.appendChild(s);
-
-    var toggle = document.createElement('button');
-    toggle.className = 'kb-toggle';
-    toggle.setAttribute('aria-label','Chat with Kala');
-    toggle.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg><div class="kb-badge" id="kbBadge"></div>';
-    document.body.appendChild(toggle);
-
-    var win = document.createElement('div');
-    win.className = 'kb-win';
-    win.id = 'kbWin';
-    win.innerHTML = `
-      <div class="kb-head">
-        <div class="kb-head-l">
-          <div class="kb-av">K</div>
-          <div>
-            <div class="kb-name">Ask Kala</div>
-            <div class="kb-status"><span class="kb-dot"></span> Online now</div>
-          </div>
-        </div>
-        <button class="kb-x" onclick="kbToggle()">×</button>
-      </div>
-      <div class="kb-msgs" id="kbMsgs"></div>
-      <div class="kb-opts" id="kbOpts"></div>
-      <div class="kb-input-row">
-        <input class="kb-input" id="kbInput" placeholder="Type your question..." maxlength="120">
-        <button class="kb-send" onclick="kbSubmitText()" title="Send">➤</button>
-      </div>
-      <div class="kb-foot">
-        <button class="kb-back" id="kbBack" onclick="kbGoHome()" style="display:none">← Topics</button>
-        <a href="https://wa.me/18053000328?text=Hi Kala! I have a question." target="_blank" class="kb-wa">WhatsApp →</a>
-      </div>
-    `;
-    document.body.appendChild(win);
-
-    toggle.addEventListener('click', kbToggle);
-
-    document.getElementById('kbInput').addEventListener('keydown', function(e){
-      if (e.key === 'Enter') kbSubmitText();
-    });
-
-    setTimeout(function(){ document.getElementById('kbBadge').style.display='block'; }, 4000);
-  }
-
-  function kbToggle() {
-    var win = document.getElementById('kbWin');
-    var badge = document.getElementById('kbBadge');
-    if (win.classList.contains('open')) {
-      win.classList.remove('open');
-    } else {
-      win.classList.add('open');
-      badge.style.display = 'none';
-      if (!document.getElementById('kbMsgs').children.length) kbGreet();
-      kbScroll();
-    }
-  }
-
-  function kbGreet() {
-    kbBotMsg(KALA_BOT.greeting, kbShowCats);
-  }
-
-  function kbShowCats() {
-    var opts = document.getElementById('kbOpts');
-    opts.innerHTML = '';
-    KALA_BOT.categories.forEach(function(cat) {
-      var btn = document.createElement('button');
-      btn.className = 'kb-btn';
-      btn.innerHTML = '<span style="font-size:14px">' + cat.icon + '</span>' + cat.label;
-      btn.onclick = function(){ kbSelectCat(cat.id, cat.label); };
-      opts.appendChild(btn);
-    });
-    document.getElementById('kbBack').style.display = 'none';
-  }
-
-  function kbSelectCat(catId, catLabel) {
-    kbUserMsg(catLabel);
-    currentCategory = catId;
-    var flow = KALA_BOT.flows[catId];
-    kbBotMsg(flow.question, function() {
-      kbShowOpts(flow.options);
-      document.getElementById('kbBack').style.display = 'block';
-    });
-  }
-
-  function kbShowOpts(options) {
-    var opts = document.getElementById('kbOpts');
-    opts.innerHTML = '';
-    options.forEach(function(opt) {
-      var btn = document.createElement('button');
-      btn.className = 'kb-btn';
-      btn.textContent = opt.label;
-      btn.onclick = function(){ kbSelectOpt(opt); };
-      opts.appendChild(btn);
-    });
-  }
-
-  function kbSelectOpt(opt) {
-    kbUserMsg(opt.label);
-    kbBotMsg(opt.answer, function() {
-      var opts = document.getElementById('kbOpts');
-      opts.innerHTML = '';
-      var more = document.createElement('button');
-      more.className = 'kb-btn';
-      more.textContent = 'More questions about this';
-      more.onclick = function(){ kbShowOpts(KALA_BOT.flows[currentCategory].options); };
-      opts.appendChild(more);
-      var home = document.createElement('button');
-      home.className = 'kb-btn';
-      home.textContent = '← All topics';
-      home.onclick = kbGoHome;
-      opts.appendChild(home);
-    });
-  }
-
-  function kbGoHome() {
-    kbBotMsg('What else can I help you with?', kbShowCats);
-  }
-
-  // ── KEYWORD MATCHING ───────────────────────────────────────────────────────
-  function kbSubmitText() {
-    var input = document.getElementById('kbInput');
-    var text = input.value.trim();
-    if (!text) return;
-    input.value = '';
-    kbUserMsg(text);
-
-    var lower = text.toLowerCase();
-    var match = null;
-    var bestScore = 0;
-
-    KALA_KB.forEach(function(kb) {
-      var score = 0;
-      kb.keys.forEach(function(key) {
-        if (lower.indexOf(key) > -1) score += key.split(' ').length; // longer phrase = higher score
-      });
-      if (score > bestScore) {
-        bestScore = score;
-        match = kb;
-      }
-    });
-
-    if (match && bestScore > 0) {
-      var flow = KALA_BOT.flows[match.category];
-      var opt = flow.options[match.optionIndex] || flow.options[0];
-      currentCategory = match.category;
-      kbBotMsg(opt.answer, function() {
-        var opts = document.getElementById('kbOpts');
-        opts.innerHTML = '';
-        var more = document.createElement('button');
-        more.className = 'kb-btn';
-        more.textContent = 'More about ' + KALA_BOT.categories.find(function(c){return c.id===match.category;}).label;
-        more.onclick = function(){ kbBotMsg(flow.question, function(){ kbShowOpts(flow.options); document.getElementById('kbBack').style.display='block'; }); };
-        opts.appendChild(more);
-        var home = document.createElement('button');
-        home.className = 'kb-btn';
-        home.textContent = '← All topics';
-        home.onclick = kbGoHome;
-        opts.appendChild(home);
-        document.getElementById('kbBack').style.display = 'block';
-      });
-    } else {
-      kbBotMsg("I didn't quite catch that — let me show you what I can help with 😊", kbShowCats);
-    }
-  }
-
-  function kbBotMsg(text, cb) {
-    var msgs = document.getElementById('kbMsgs');
-    var typing = document.createElement('div');
-    typing.className = 'kb-typing';
-    typing.innerHTML = '<span></span><span></span><span></span>';
-    msgs.appendChild(typing);
-    kbScroll();
-    setTimeout(function() {
-      msgs.removeChild(typing);
-      var msg = document.createElement('div');
-      msg.className = 'kb-msg bot';
-      msg.innerHTML = text;
-      msgs.appendChild(msg);
-      kbScroll();
-      if (cb) cb();
-    }, 500);
-  }
-
-  function kbUserMsg(text) {
-    var msgs = document.getElementById('kbMsgs');
-    var msg = document.createElement('div');
-    msg.className = 'kb-msg usr';
-    msg.textContent = text;
-    msgs.appendChild(msg);
-    document.getElementById('kbOpts').innerHTML = '';
-    kbScroll();
-  }
-
-  function kbScroll() {
-    var msgs = document.getElementById('kbMsgs');
-    setTimeout(function(){ msgs.scrollTop = msgs.scrollHeight; }, 60);
-  }
-
-  window.kbToggle = kbToggle;
-  window.kbGoHome = kbGoHome;
-  window.kbSubmitText = kbSubmitText;
-  window.kalaBotSelectCategory = function(catId, catLabel){ kbSelectCat(catId, catLabel); };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', createBot);
-  } else {
-    createBot();
-  }
-})();
-
-</script>
 <!-- JOIN THE KALA TEAM POPUP -->
 <div class="join-overlay" id="joinOverlay">
   <div class="join-modal">
@@ -1825,6 +1329,266 @@ document.getElementById('joinOverlay').addEventListener('click',function(e){
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape') closeJoinPopup();
 });
+</script>
+<script>
+// ── KALA STUDIO CHATBOT v3 ──────────────────────────────────
+(function() {
+  var currentCategory = null;
+
+  function createBot() {
+    var css = `
+      .kb-toggle{position:fixed;bottom:24px;right:24px;z-index:9000;width:52px;height:52px;border-radius:50%;background:var(--gold,#C6A96A);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.4);transition:transform 0.2s}
+      .kb-toggle:hover{transform:scale(1.08)}
+      .kb-toggle svg{width:22px;height:22px;fill:#000}
+      .kb-wrap{position:fixed;bottom:88px;right:24px;z-index:9000;width:320px;max-height:480px;background:#0f0d08;border:1px solid rgba(198,169,106,0.25);border-radius:4px;display:none;flex-direction:column;box-shadow:0 8px 40px rgba(0,0,0,0.6);font-family:'Montserrat',sans-serif}
+      .kb-wrap.open{display:flex}
+      .kb-head{background:rgba(198,169,106,0.08);padding:14px 16px;border-bottom:1px solid rgba(198,169,106,0.15);display:flex;justify-content:space-between;align-items:center}
+      .kb-head-title{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold,#C6A96A)}
+      .kb-close{background:none;border:none;color:rgba(221,214,204,0.5);cursor:pointer;font-size:18px;line-height:1;padding:0}
+      .kb-close:hover{color:var(--gold,#C6A96A)}
+      .kb-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;min-height:120px}
+      .kb-msg{max-width:88%;padding:10px 13px;border-radius:3px;font-size:13px;line-height:1.55}
+      .kb-msg.bot{background:rgba(255,255,255,0.05);color:rgba(221,214,204,0.88);align-self:flex-start}
+      .kb-msg.user{background:rgba(198,169,106,0.15);color:var(--gold,#C6A96A);align-self:flex-end;text-align:right}
+      .kb-opts{padding:10px 14px;display:flex;flex-direction:column;gap:7px}
+      .kb-opt{background:transparent;border:1px solid rgba(198,169,106,0.3);color:rgba(221,214,204,0.8);padding:9px 13px;font-size:12px;font-weight:600;letter-spacing:0.5px;cursor:pointer;text-align:left;transition:all 0.18s;font-family:'Montserrat',sans-serif}
+      .kb-opt:hover{background:rgba(198,169,106,0.1);border-color:var(--gold,#C6A96A);color:var(--gold,#C6A96A)}
+      .kb-input-row{display:flex;padding:10px 14px;gap:8px;border-top:1px solid rgba(198,169,106,0.1)}
+      .kb-input{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(198,169,106,0.2);color:rgba(221,214,204,0.9);padding:8px 11px;font-size:12px;font-family:'Montserrat',sans-serif;outline:none}
+      .kb-input::placeholder{color:rgba(221,214,204,0.3)}
+      .kb-send{background:var(--gold,#C6A96A);border:none;color:#000;padding:8px 13px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px;font-family:'Montserrat',sans-serif}
+      .kb-back{background:none;border:none;color:rgba(198,169,106,0.6);font-size:11px;cursor:pointer;padding:6px 14px 2px;font-family:'Montserrat',sans-serif;text-align:left;letter-spacing:1px}
+      .kb-back:hover{color:var(--gold,#C6A96A)}
+    `;
+    var style = document.createElement('style');
+    style.textContent = css;
+    document.head.appendChild(style);
+
+    var toggle = document.createElement('button');
+    toggle.className = 'kb-toggle';
+    toggle.setAttribute('aria-label','Chat with Kala');
+    toggle.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>';
+
+    var wrap = document.createElement('div');
+    wrap.className = 'kb-wrap';
+    wrap.id = 'kbWrap';
+    wrap.innerHTML = `
+      <div class="kb-head">
+        <span class="kb-head-title">Kala ✨</span>
+        <button class="kb-close" onclick="kbToggle()">×</button>
+      </div>
+      <div class="kb-msgs" id="kbMsgs"></div>
+      <div class="kb-opts" id="kbOpts"></div>
+      <div class="kb-input-row">
+        <input class="kb-input" id="kbInput" placeholder="Type a question..." onkeydown="if(event.key==='Enter')kbSubmitText()">
+        <button class="kb-send" onclick="kbSubmitText()">Send</button>
+      </div>
+    `;
+
+    document.body.appendChild(toggle);
+    document.body.appendChild(wrap);
+    toggle.addEventListener('click', kbToggle);
+
+    showGreeting();
+  }
+
+  var KB = {
+    greeting: "Hi! I'm <strong>Kala</strong> ✨<br>Westlake Village · Torrance · Anaheim<br><span style='font-size:12px;opacity:0.85'>How can I help you today?</span>",
+    categories: [
+      { id: 'locations', icon: '📍', label: 'Our Studios' },
+      { id: 'services',  icon: '✨', label: 'Our Services' },
+      { id: 'booking',   icon: '📅', label: 'Booking' },
+      { id: 'pricing',   icon: '💰', label: 'Pricing' },
+      { id: 'walkins',   icon: '🚶', label: 'Walk-ins' },
+      { id: 'giftcards', icon: '🎁', label: 'Gift Cards' },
+      { id: 'careers',   icon: '💼', label: 'Careers' },
+    ],
+    flows: {
+      locations: {
+        question: "Which Kala Studio can I help you with?",
+        options: [
+          { label: "Kala Westlake Village", answer: "<strong>Kala Westlake Village</strong><br>30825 Thousand Oaks Blvd · Westlake Village, CA 91362<br><br><strong>Hours:</strong><br>Mon–Thu: 9AM–6PM · Fri: 10AM–6PM<br>Sat: 10AM–4PM · Sun: Closed<br><br>Walk-ins welcome — book ahead to guarantee your spot.<div style='margin-top:10px'><a href='https://maps.app.goo.gl/M9bwnQEsvBEVMaq77' target='_blank' style='display:block;text-align:center;padding:8px;border:1px solid rgba(198,169,106,0.4);color:var(--gold,#C6A96A);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;margin-bottom:6px'>Open in Maps →</a></div>" },
+          { label: "Kala Torrance", answer: "<strong>Kala Torrance</strong> · formerly The Thread Beauty<br>22823 Hawthorne Blvd · Torrance, CA 90505<br><br>Walk-ins welcome · Threading specialty<br>Booking by phone: <strong>(310) 994-7586</strong><br><br><em>Note: Microblading and PMU are not available at this location.</em><div style='margin-top:10px'><a href='tel:3109947586' style='display:block;text-align:center;padding:8px;border:1px solid rgba(198,169,106,0.4);color:var(--gold,#C6A96A);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none'>Call to Book →</a></div>" },
+          { label: "Kala Anaheim", answer: "<strong>Kala Anaheim</strong> — Coming Soon!<br>263 S Euclid St · Anaheim, CA 92802<br><br>The Kala experience is headed south. Stay tuned for our grand opening!" },
+          { label: "All locations", answer: "<strong>Kala Westlake Village</strong><br>30825 Thousand Oaks Blvd, WV CA 91362 · (747) 222-7462<br><br><strong>Kala Torrance</strong> (formerly The Thread Beauty)<br>22823 Hawthorne Blvd, Torrance CA 90505 · (310) 994-7586<br><br><strong>Kala Anaheim</strong> — Coming Soon<br>263 S Euclid St, Anaheim CA 92802" }
+        ]
+      },
+      services: {
+        question: "What service are you interested in?",
+        options: [
+          { label: "Brow Threading", answer: "Our signature service — precise, clean, chemical-free brow shaping by master artists. Available at all open locations." },
+          { label: "Keratin Lash Lift & Tint", answer: "Lift, curl, and define your natural lashes without extensions. Results last 6–8 weeks." },
+          { label: "Brow Lamination", answer: "Fluffy, brushed-up brows that last 4–6 weeks. Often paired with threading for a complete brow transformation." }
+          { label: "Facials & Waxing", answer: "We offer signature facials and precision waxing at Kala Westlake Village. Book online or call us." }
+        ]
+      },
+      booking: {
+        question: "How would you like to book?",
+        options: [
+          { label: "Book Online — Westlake Village", answer: "Tap below to book at Kala Westlake Village:<div style='margin-top:10px'><button onclick="if(window.GZBOOKER)window.GZBOOKER.show()" style='background:var(--gold,#C6A96A);color:#000;border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
+          { label: "Book by Phone — Torrance", answer: "Call Kala Torrance to book: <strong>(310) 994-7586</strong><br>Walk-ins also always welcome." }
+        ]
+      },
+      pricing: {
+        question: "Which service pricing would you like?",
+        options: [
+          { label: "Brow Threading", answer: "<strong>Threading:</strong> from $18<br><strong>Brows + Tint:</strong> from $28<br><strong>Brows + Lip + Chin:</strong> $32<br><strong>Full Face:</strong> from $45<br><br>Prices may vary. Walk-ins welcome." },
+          { label: "Lash Lift & Lamination", answer: "<strong>Keratin Lash Lift + Tint:</strong> from $95<br><strong>Brow Lamination + Threading:</strong> from $75<br><strong>Lamination + Tint:</strong> from $85" }
+        ]
+      },
+      walkins: {
+        question: "Walk-in info by location:",
+        options: [
+          { label: "Westlake Village", answer: "Walk-ins are welcome at Kala Westlake Village! We recommend booking ahead to guarantee your spot, especially on weekends." },
+          { label: "Torrance", answer: "Walk-ins are always welcome at Kala Torrance. Threading requires no appointment — just come in!" }
+        ]
+      },
+      giftcards: {
+        question: "Gift card options:",
+        options: [
+          { label: "Buy a gift card", answer: "Gift cards are available in-studio at Kala Westlake Village. Call us at (747) 222-7462 or stop by to purchase one for someone special." }
+        ]
+      },
+      careers: {
+        question: "Join the Kala team:",
+        options: [
+          { label: "Open positions", answer: "We're always looking for licensed artists with exceptional talent and high standards. Click the 'Join the Kala Team' button on our website or email <strong>hello@mykalastudio.com</strong> to introduce yourself." }
+        ]
+      }
+    },
+    keywords: [
+      {keys:['torrance','thread beauty','hawthorne','south bay'],category:'locations',optionIndex:1},
+      {keys:['anaheim','euclid'],category:'locations',optionIndex:2},
+      {keys:['westlake','thousand oaks','wv'],category:'locations',optionIndex:0},
+      {keys:['location','locations','nearest','all studios','where are you'],category:'locations',optionIndex:3},
+      
+      {keys:['lash lift','keratin lash','lash tint'],category:'services',optionIndex:1},
+      {keys:['lamination','brow lam'],category:'services',optionIndex:2},
+      {keys:['threading','thread','brow shaping'],category:'services',optionIndex:0},
+      {keys:['facial','waxing','wax'],category:'services',optionIndex:4},
+      {keys:['book','booking','appointment','schedule','reserve'],category:'booking',optionIndex:0},
+      {keys:['price','pricing','cost','how much','rates'],category:'pricing',optionIndex:0},
+      {keys:['walk in','walk-in','walkin','no appointment'],category:'walkins',optionIndex:0},
+      {keys:['gift card','gift certificate','present','gift'],category:'giftcards',optionIndex:0},
+      {keys:['job','career','work','hiring','position','artist'],category:'careers',optionIndex:0},
+    ]
+  };
+
+  function showGreeting() {
+    currentCategory = null;
+    var msgs = document.getElementById('kbMsgs');
+    var opts = document.getElementById('kbOpts');
+    if (!msgs || !opts) return;
+    msgs.innerHTML = '';
+    addMsg(KB.greeting, 'bot');
+    opts.innerHTML = KB.categories.map(function(c) {
+      return '<button class="kb-opt" onclick="kalaBotSelectCategory('' + c.id + '','' + c.label + '')">' + c.icon + ' ' + c.label + '</button>';
+    }).join('');
+    kbScroll();
+  }
+
+  function kbSelCat(catId, catLabel) {
+    currentCategory = catId;
+    var flow = KB.flows[catId];
+    if (!flow) return;
+    addMsg(catLabel, 'user');
+    setTimeout(function() {
+      addMsg(flow.question, 'bot');
+      var opts = document.getElementById('kbOpts');
+      if (opts) opts.innerHTML = flow.options.map(function(o, i) {
+        return '<button class="kb-opt" onclick="kbAnswer(' + i + ')">' + o.label + '</button>';
+      }).join('') + '<button class="kb-back" onclick="kbGoHome()">← Back</button>';
+      kbScroll();
+    }, 300);
+  }
+
+  function kbAnswer(i) {
+    var flow = KB.flows[currentCategory];
+    if (!flow) return;
+    var opt = flow.options[i];
+    addMsg(opt.label, 'user');
+    setTimeout(function() {
+      addMsg(opt.answer, 'bot');
+      var opts = document.getElementById('kbOpts');
+      if (opts) opts.innerHTML = '<button class="kb-back" onclick="kbGoHome()">← Ask something else</button>';
+      kbScroll();
+    }, 300);
+  }
+
+  function kbSubmitText() {
+    var input = document.getElementById('kbInput');
+    if (!input || !input.value.trim()) return;
+    var text = input.value.trim().toLowerCase();
+    input.value = '';
+    addMsg(text, 'user');
+
+    var matched = null;
+    for (var k = 0; k < KB.keywords.length; k++) {
+      var kw = KB.keywords[k];
+      for (var j = 0; j < kw.keys.length; j++) {
+        if (text.indexOf(kw.keys[j]) > -1) {
+          matched = kw;
+          break;
+        }
+      }
+      if (matched) break;
+    }
+
+    setTimeout(function() {
+      if (matched) {
+        var flow = KB.flows[matched.category];
+        var opt = flow && flow.options[matched.optionIndex];
+        if (opt) {
+          addMsg(opt.answer, 'bot');
+        } else {
+          kbSelCat(matched.category, matched.category);
+          return;
+        }
+      } else {
+        addMsg("I'd love to help! Try asking about our locations, services, pricing, or booking. You can also call us at <strong>(747) 222-7462</strong>.", 'bot');
+      }
+      var opts = document.getElementById('kbOpts');
+      if (opts) opts.innerHTML = '<button class="kb-back" onclick="kbGoHome()">← Back to menu</button>';
+      kbScroll();
+    }, 350);
+  }
+
+  function kbToggle() {
+    var w = document.getElementById('kbWrap');
+    if (!w) return;
+    w.classList.toggle('open');
+    if (w.classList.contains('open')) kbScroll();
+  }
+
+  function kbGoHome() { showGreeting(); }
+
+  function addMsg(text, type) {
+    var msgs = document.getElementById('kbMsgs');
+    if (!msgs) return;
+    var msg = document.createElement('div');
+    msg.className = 'kb-msg ' + type;
+    msg.innerHTML = text;
+    msgs.appendChild(msg);
+    document.getElementById('kbOpts').innerHTML = '';
+    kbScroll();
+  }
+
+  function kbScroll() {
+    var msgs = document.getElementById('kbMsgs');
+    setTimeout(function(){ if(msgs) msgs.scrollTop = msgs.scrollHeight; }, 60);
+  }
+
+  window.kbToggle = kbToggle;
+  window.kbGoHome = kbGoHome;
+  window.kbSubmitText = kbSubmitText;
+  window.kalaBotSelectCategory = function(catId, catLabel){ kbSelCat(catId, catLabel); };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createBot);
+  } else {
+    createBot();
+  }
+})();
 </script>
 </body>
 </html>
