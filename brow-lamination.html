@@ -1548,14 +1548,14 @@ window.addEventListener('load',function(){var w=window;if(w.__kalaUzeliInit||!w.
         options: [
           { label: "Brow Threading", answer: "Our signature service — precise, clean, chemical-free brow shaping by master artists. Available at all open locations." },
           { label: "Keratin Lash Lift & Tint", answer: "Lift, curl, and define your natural lashes without extensions. Results last 6–8 weeks." },
-          { label: "Brow Lamination", answer: "Fluffy, brushed-up brows that last 4–6 weeks. Often paired with threading for a complete brow transformation." }
+          { label: "Brow Lamination", answer: "Fluffy, brushed-up brows that last 4–6 weeks. Often paired with threading for a complete brow transformation." },
           { label: "Facials & Waxing", answer: "We offer signature facials and precision waxing at Kala Westlake Village. Book online or call us." }
         ]
       },
       booking: {
         question: "How would you like to book?",
         options: [
-          { label: "Book Online — Westlake Village", answer: "Tap below to book at Kala Westlake Village:<div style='margin-top:10px'><button onclick="if(window.GZBOOKER)window.GZBOOKER.show()" style='background:var(--gold,#C6A96A);color:#000;border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
+          { label: "Book Online — Westlake Village", answer: "Tap below to book at Kala Westlake Village:<div style='margin-top:10px'><button onclick=\"if(window.GZBOOKER)window.GZBOOKER.show()\" style='background:var(--gold,#C6A96A);color:#000;border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
           { label: "Book by Phone — Torrance", answer: "Call Kala Torrance to book: <strong>(310) 994-7586</strong><br>Walk-ins also always welcome." }
         ]
       },
@@ -1612,7 +1612,7 @@ window.addEventListener('load',function(){var w=window;if(w.__kalaUzeliInit||!w.
     msgs.innerHTML = '';
     addMsg(KB.greeting, 'bot');
     opts.innerHTML = KB.categories.map(function(c) {
-      return '<button class="kb-opt" onclick="kalaBotSelectCategory('' + c.id + '','' + c.label + '')">' + c.icon + ' ' + c.label + '</button>';
+      return '<button class="kb-opt" onclick="kalaBotSelectCategory(\'' + c.id + '\',\'' + c.label + '\')">' + c.icon + ' ' + c.label + '</button>';
     }).join('');
     kbScroll();
   }

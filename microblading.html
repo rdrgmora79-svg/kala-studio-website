@@ -1536,7 +1536,7 @@ document.getElementById('joinPopup').addEventListener('click',function(e){
     msgs.innerHTML = '';
     addMsg(KB.greeting, 'bot');
     opts.innerHTML = KB.categories.map(function(c) {
-      return '<button class="kb-opt" onclick="kalaBotSelectCategory('' + c.id + '','' + c.label + '')">' + c.icon + ' ' + c.label + '</button>';
+      return '<button class="kb-opt" onclick="kalaBotSelectCategory(\'' + c.id + '\',\'' + c.label + '\')">' + c.icon + ' ' + c.label + '</button>';
     }).join('');
     kbScroll();
   }
