@@ -1036,7 +1036,7 @@ footer > *:not(.footer-logo){max-width:1400px;margin-left:auto;margin-right:auto
     <a href="/services" class="nav-link">Services</a>
     <a href="https://www.instagram.com/mykalastudio/" target="_blank" rel="noopener" class="nav-link">Our Work</a>
     <a href="/signature-services" class="nav-link">Signature</a>
-    <a href="/#booking" class="nav-book gz-book">Book Now</a>
+    <a href="https://wa.me/18053000328?text=Hi%20Kala%20Studio%2C%20I%27m%20interested%20in%20microblading.%20Can%20I%20schedule%20a%20consultation%3F" target="_blank" rel="noopener" class="nav-book">WhatsApp</a>
     <div class="nav-hamburger" id="hamburger" onclick="openMobileMenu()">
       <span></span><span></span><span></span>
     </div>
@@ -1048,7 +1048,7 @@ footer > *:not(.footer-logo){max-width:1400px;margin-left:auto;margin-right:auto
   <a href="https://www.instagram.com/mykalastudio/" target="_blank" rel="noopener" onclick="closeMobileMenu()">Our Work</a>
   <a href="/signature-services" onclick="closeMobileMenu()">Signature</a>
   <a href="/#about" onclick="closeMobileMenu()">About</a>
-  <a href="/#booking" onclick="closeMobileMenu()">Book Now</a>
+  <a href="https://wa.me/18053000328?text=Hi%20Kala%20Studio%2C%20I%27m%20interested%20in%20microblading.%20Can%20I%20schedule%20a%20consultation%3F" target="_blank" rel="noopener" onclick="closeMobileMenu()">WhatsApp</a>
 </div>
 <div class="page-hero">
     <div class="page-hero-eyebrow">Advanced Aesthetics · Kala Studio</div>
@@ -1233,7 +1233,7 @@ footer > *:not(.footer-logo){max-width:1400px;margin-left:auto;margin-right:auto
     <a href="https://wa.me/18053000328?text=Hi%20Kala%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" class="sticky-wa">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(37,211,102,0.85)" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
     </a>
-    <a href="#booking" class="sticky-book gz-book">Book Now</a>
+    <a href="tel:7472227462" class="sticky-book">Call Us</a>
   </div>
 </div>
 
@@ -1334,93 +1334,7 @@ const loyaltyIo=new IntersectionObserver(entries=>{
 const _stampsEl=document.getElementById('loyaltyStamps') || {classList:{add:()=>{},remove:()=>{},contains:()=>false},style:{},addEventListener:()=>{}};if(_stampsEl&&_stampsEl.closest)loyaltyIo.observe(_stampsEl.closest('section'));
 </script>
 
-  <!-- ============================================
-       GROWTHZILLA / UZELI BOOKING WIDGET
-       businessId: 1b4840f9-8dcc-4cb8-a33d-13f276dfac29
-       Implementation: official embed, modal overlay
-       disableDefaultButton: true — all CTAs wired manually
-  ============================================ -->
-
-  <!-- Step 1: Load GZBooker library (synchronous — required before config callback) -->
-  <script type="text/javascript" src="https://book.appt.cm/js/gzbooker.js"></script>
-
-  <!-- Step 2: Load business config (fires GZBOOKER.configure callback) -->
-  <script type="text/javascript" src="https://book.appt.cm/remote/api/booking/config/1b4840f9-8dcc-4cb8-a33d-13f276dfac29?callback=GZBOOKER.configure"></script>
-
-  <!-- Step 3: Init widget + wire all booking CTAs after DOM is ready -->
-  <script type="text/javascript">
-  (function(w) {
-
-    function wireAllBookingCTAs() {
-      // Wire every element with class .gz-book to open the modal
-      var bookBtns = document.querySelectorAll('.gz-book');
-      bookBtns.forEach(function(btn) {
-        // Remove any stale listeners by cloning
-        var fresh = btn.cloneNode(true);
-        btn.parentNode.replaceChild(fresh, btn);
-        fresh.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (w.GZBOOKER && typeof w.GZBOOKER.show === 'function') {
-            w.GZBOOKER.show();
-            // If modal shows "no services", user sees direct link below
-          } else {
-            w.open('https://my.growthzilla.com/EQV7-Kala-Studio-Westlake-Village','_blank');
-          }
-        });
-      });
-
-      // Also wire the primary button by ID (Growthzilla platform requirement)
-      var primaryBtn = document.getElementById('booking-button-860571');
-      if (primaryBtn) {
-        primaryBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (w.GZBOOKER && typeof w.GZBOOKER.show === 'function') {
-            w.GZBOOKER.show();
-          }
-        });
-      }
-    }
-
-    function initGZ() {
-      if (!w.GZBOOKER) {
-        // GZBooker not ready yet — retry
-        setTimeout(initGZ, 200);
-        return;
-      }
-
-      w.GZBOOKER.init({
-        businessId: "1b4840f9-8dcc-4cb8-a33d-13f276dfac29",
-        version: "v2",
-        disableDefaultButton: true,
-        widgetPrimaryColor: "#C6A96A",
-        darkMode: false,
-        frameZIndex: 99999,
-        bookingCallback: function(userInfo) {
-          if (w.dataLayer) w.dataLayer.push({ event: 'booking_completed', user: userInfo });
-        },
-        closeCallback: function(count) {
-          if (count > 0 && w.dataLayer) w.dataLayer.push({ event: 'booking_modal_closed_with_booking', count: count });
-        },
-        readyCallback: function() {
-          console.log('GZBooker ready');
-        }
-      });
-
-      wireAllBookingCTAs();
-    }
-
-    // Run after DOM is fully parsed
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initGZ);
-    } else {
-      initGZ();
-    }
-
-  }(window));
-  </script>
-  <!-- ============================================ -->
+  <!-- Booking for microblading is by WhatsApp / phone consultation only (no online booking widget on this page). -->
 
 
 
@@ -1563,7 +1477,7 @@ document.getElementById('joinPopup').addEventListener('click',function(e){
       booking: {
         question: "How would you like to book?",
         options: [
-          { label: "Book Online — Westlake Village", answer: "Tap below to book at Kala Westlake Village:<div style='margin-top:10px'><button onclick="if(window.GZBOOKER)window.GZBOOKER.show()" style='background:var(--gold,#C6A96A);color:#000;border:none;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%'>Book Now →</button></div>" },
+          { label: "Book a Consultation", answer: "Message us on WhatsApp or call to schedule your microblading consultation:<div style='margin-top:10px'><a href='https://wa.me/18053000328?text=Hi%20Kala%20Studio%2C%20I%27m%20interested%20in%20microblading.%20Can%20I%20schedule%20a%20consultation%3F' target='_blank' rel='noopener' style='display:block;text-align:center;background:var(--gold,#C6A96A);color:#000;padding:10px 20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none'>WhatsApp →</a></div>" },
           { label: "Book by Phone — Torrance", answer: "Call Kala Torrance to book: <strong>(310) 994-7586</strong><br>Walk-ins also always welcome." },
           { label: "Microblading consultation", answer: "Microblading and PMU are available at Kala Westlake Village only. Call <strong>(747) 222-7462</strong> to speak with Mona and schedule your consultation." }
         ]
