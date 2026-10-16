@@ -2038,7 +2038,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="loc-address" style="color:rgba(221,214,204,0.75);font-size:13px;line-height:1.7;margin-bottom:12px">Award-winning brow threading, Keratin Lash Lift, and premium beauty — in the heart of Conejo Valley.</p>
       <p class="loc-address">30825 Thousand Oaks Blvd · Westlake Village, CA 91362</p>
     </div>
-    <button class="loc-btn gz-book" id="booking-button-860571" style="margin-top:auto">Book Now →</button>
+    <button class="loc-btn gz-book" style="margin-top:auto">Book Now →</button>
   </div>
 
   <!-- TORRANCE -->
@@ -2434,7 +2434,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="section-sub reveal" data-delay="2">Choose what works best for you.</p>
 
   <div class="booking-actions reveal" data-delay="3">
-    <button class="book-action-btn book-action-btn--primary gz-book" id="booking-button-860571">
+    <button class="book-action-btn book-action-btn--primary gz-book">
       <svg class="book-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       Book Online
     </button>
@@ -2571,100 +2571,261 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script type="text/javascript" src="https://book.appt.cm/js/gzbooker.js"></script>
 <script type="text/javascript" src="https://book.appt.cm/remote/api/booking/config/1b4840f9-8dcc-4cb8-a33d-13f276dfac29?callback=GZBOOKER.configure"></script>
 <script type="text/javascript">
-(function(w){
+/* Kala Westlake · Uzeli (GZBooker) booking tracking
+   - Single GZBOOKER.init, single delegated CTA listener.
+   - booking_confirmed is a CANDIDATE signal from bookingCallback only (pending the real test);
+     closeCallback keeps legacy booking_completed / booking_abandoned and never confirms.
+   - booking_confirmed is pushed from the parent page only (no cross-domain dependency).
+   - userInfo is NEVER pushed to dataLayer, analytics or logs; only a strict whitelist is read.
+   - Westlake/Uzeli only. Do not reuse this block for Anaheim/Vagaro. */
+(function (w, d) {
+  'use strict';
+  if (w.__kalaUzeliInit) return;
+  w.__kalaUzeliInit = true;
 
-  if(!w.GZBOOKER) return;
+  var CFG = {
+    businessId: '1b4840f9-8dcc-4cb8-a33d-13f276dfac29',
+    location: 'westlake',
+    provider: 'uzeli',
+    value: 0,
+    currency: 'USD',
+    attemptTtlMs: 30 * 60 * 1000
+  };
 
-  w.GZBOOKER.init({
-    businessId: "1b4840f9-8dcc-4cb8-a33d-13f276dfac29",
-    disableDefaultButton: true,
-    widgetPrimaryColor: "#0a0a0a",
+  // Discovery logging (keys/types only, never values) runs ONLY on staging/local hosts with ?kala_debug=1
+  var DEBUG = /[?&]kala_debug=1(&|$)/.test(w.location.search) &&
+    /(\.workers\.dev|\.pages\.dev)$|^(localhost|127\.0\.0\.1)$/.test(w.location.hostname);
 
-    // ── GTM: fires when appointment is BOOKED ──────────────────
-    bookingCallback: function(userInfo){
-      if(w.dataLayer) w.dataLayer.push({
-        event: "appointment_booked",
-        booking_info: userInfo
-      });
-    },
+  /* ---------- storage helpers (all guarded) ---------- */
+  function ssGet(k) { try { return w.sessionStorage.getItem(k); } catch (e) { return null; } }
+  function ssSet(k, v) { try { w.sessionStorage.setItem(k, v); } catch (e) { /* storage blocked */ } }
+  function ssDel(k) { try { w.sessionStorage.removeItem(k); } catch (e) { /* noop */ } }
+  var memSent = {};
 
-    // ── GTM: fires when widget is CLOSED ──────────────────────
-    closeCallback: function(count, businessInfo){
-      if(w.dataLayer) w.dataLayer.push({
-        event: count > 0 ? "booking_completed" : "booking_abandoned",
-        appointments_booked: count
-      });
+  function readSent() {
+    var o = {};
+    try { var raw = ssGet('kala_bk_sent'); if (raw) o = JSON.parse(raw) || {}; } catch (e) { o = {}; }
+    for (var k in memSent) { if (memSent.hasOwnProperty(k)) o[k] = 1; }
+    return o;
+  }
+  function markSent(key) {
+    memSent[key] = 1;
+    var o = readSent(); o[key] = 1;
+    ssSet('kala_bk_sent', JSON.stringify(o));
+  }
+
+  /* ---------- attribution capture (gclid / gbraid / wbraid / UTMs) ----------
+     sessionStorage ONLY. Not pushed to dataLayer and no custom cookie until the GTM,
+     Consent Mode, Conversion Linker and privacy-policy audit is done. */
+  var ATTR_KEYS = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+
+  function captureAttribution() {
+    var found = {}, any = false;
+    var q = String(w.location.search || '').replace(/^\?/, '').split('&');
+    for (var i = 0; i < q.length; i++) {
+      var idx = q[i].indexOf('=');
+      if (idx < 1) continue;
+      var k = q[i].slice(0, idx), v = q[i].slice(idx + 1);
+      if (ATTR_KEYS.indexOf(k) === -1 || !v) continue;
+      try { v = decodeURIComponent(v.replace(/\+/g, ' ')); } catch (e) { continue; }
+      if (/^[\w\-.~ ]{1,200}$/.test(v)) { found[k] = v; any = true; }
     }
+    if (any) ssSet('kala_attr', JSON.stringify(found));
+  }
+
+  /* ---------- booking attempt (created BEFORE Uzeli opens, reused until it closes) ---------- */
+  function uuid() {
+    try { if (w.crypto && w.crypto.randomUUID) return w.crypto.randomUUID(); } catch (e) { /* fall through */ }
+    return 'a' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+  }
+  var attempt = null;
+
+  function loadAttempt() {
+    if (attempt) return attempt;
+    var raw = ssGet('kala_bk_attempt');
+    if (!raw) return null;
+    try {
+      var o = JSON.parse(raw);
+      if (o && o.id && (Date.now() - o.t) < CFG.attemptTtlMs) { attempt = o; return attempt; }
+    } catch (e) { /* ignore */ }
+    return null;
+  }
+  function saveAttempt() { if (attempt) ssSet('kala_bk_attempt', JSON.stringify(attempt)); }
+  function openAttempt(placement) {
+    var cur = loadAttempt();
+    if (cur) return cur;
+    attempt = { id: uuid(), t: Date.now(), placement: placement || 'other', confirmed: false };
+    saveAttempt();
+    return attempt;
+  }
+  function closeAttempt() { attempt = null; ssDel('kala_bk_attempt'); }
+
+  /* ---------- PII-safe reading of Uzeli payloads ---------- */
+  var ID_KEYS = ['booking_id', 'bookingId', 'appointment_id', 'appointmentId',
+    'confirmation_id', 'confirmationId', 'confirmation_number', 'confirmationNumber'];
+  var SERVICE_KEYS = ['service', 'serviceName', 'service_name'];
+
+  function safeService(v) {
+    if (typeof v !== 'string') return null;
+    v = v.replace(/^\s+|\s+$/g, '');
+    if (!v || v.length > 80) return null;
+    if (v.indexOf('@') > -1) return null;
+    if (/\d{7,}/.test(v.replace(/[\s\-().]/g, ''))) return null;   // looks like a phone number
+    return v;
+  }
+  function pickSafe(info) {
+    var out = {};
+    if (!info || typeof info !== 'object') return out;
+    var i, v;
+    for (i = 0; i < ID_KEYS.length; i++) {
+      v = info[ID_KEYS[i]];
+      if (typeof v === 'number') v = String(v);
+      if (typeof v === 'string' && /^[A-Za-z0-9_\-:.]{4,80}$/.test(v)) { out.booking_id = v; break; }
+    }
+    for (i = 0; i < SERVICE_KEYS.length; i++) {
+      v = safeService(info[SERVICE_KEYS[i]]);
+      if (v) { out.service = v; break; }
+    }
+    return out;
+  }
+
+  /* ---------- staging-only discovery: key names and types, never values ---------- */
+  function describe(o) {
+    if (o === null || o === undefined) return String(o);
+    if (typeof o !== 'object') return typeof o;
+    if (Object.prototype.toString.call(o) === '[object Array]') return 'array(' + o.length + ')';
+    var parts = [];
+    for (var k in o) {
+      if (!o.hasOwnProperty(k)) continue;
+      var t = typeof o[k];
+      if (t === 'object' && o[k] !== null && Object.prototype.toString.call(o[k]) !== '[object Array]') {
+        t = 'object{' + Object.keys(o[k]).join(',') + '}';
+      } else if (t === 'object' && o[k] !== null) {
+        t = 'array(' + o[k].length + ')';
+      }
+      parts.push(k + ':' + t);
+    }
+    return parts.join(' | ');
+  }
+  function debugLog(label, o) {
+    if (!DEBUG) return;
+    try { w.console && w.console.log('[kala-debug]', label, describe(o)); } catch (e) { /* noop */ }
+  }
+  if (DEBUG) {
+    w.addEventListener('message', function (ev) {
+      debugLog('postMessage from ' + ev.origin, ev.data);
+    });
+  }
+
+  /* ---------- dataLayer ---------- */
+  function push(obj) { w.dataLayer = w.dataLayer || []; w.dataLayer.push(obj); }
+
+  function confirmBooking(source, info) {
+    var a = loadAttempt() || openAttempt('unknown');
+    var safe = pickSafe(info);
+    var key = safe.booking_id || a.id;
+    if (readSent()[key]) { debugLog('dedup-skip', { source: source }); return null; }
+    markSent(key);
+    a.confirmed = true;
+    saveAttempt();
+    var payload = {
+      event: 'booking_confirmed',
+      location: CFG.location,
+      booking_provider: CFG.provider,
+      event_id: key,
+      booking_attempt_id: a.id,
+      cta_placement: a.placement,
+      confirm_source: source,
+      value: CFG.value,
+      currency: CFG.currency
+    };
+    if (safe.booking_id) payload.booking_id = safe.booking_id;
+    if (safe.service) payload.service = safe.service;
+    push(payload);
+    return payload;
+  }
+
+  function onBookingCallback(userInfo) {
+    debugLog('bookingCallback', userInfo);
+    var sent = confirmBooking('bookingCallback', userInfo);
+    if (sent) {
+      // legacy event name kept (sanitized, no userInfo) until the GTM container is audited
+      push({ event: 'appointment_booked', location: CFG.location, booking_provider: CFG.provider, booking_attempt_id: sent.booking_attempt_id });
+    }
+  }
+
+  function onCloseCallback(count, businessInfo) {
+    debugLog('closeCallback', { count: count, businessInfo: businessInfo });
+    // closeCallback does NOT confirm bookings (count > 0 is unverified). Legacy events only.
+    var n = parseInt(count, 10) || 0;
+    push({
+      event: n > 0 ? 'booking_completed' : 'booking_abandoned',   // legacy names kept
+      location: CFG.location,
+      booking_provider: CFG.provider,
+      appointments_booked: n,
+      booking_attempt_id: (loadAttempt() || {}).id
+    });
+    closeAttempt();
+  }
+
+  /* ---------- CTAs: one delegated listener ---------- */
+  function placementFor(el) {
+    var explicit = el.getAttribute && el.getAttribute('data-cta-placement');
+    if (explicit) return explicit;
+    if (!el.closest) return 'other';
+    if (el.closest('.sticky-bar')) return 'sticky';
+    if (el.closest('nav, #mobileMenu')) return 'nav';
+    if (el.closest('.hero')) return 'hero';
+    if (el.closest('.loc-selector')) return 'location_selector';
+    if (el.closest('#services')) return 'services';
+    if (el.closest('#booking')) return 'booking_section';
+    if (el.closest('#deals')) return 'deals';
+    return 'other';
+  }
+
+  d.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var el = t.closest('.gz-book');
+    if (!el) return;
+    e.preventDefault();
+    var placement = placementFor(el);
+    var a = openAttempt(placement);
+    push({
+      event: 'booking_button_clicked',
+      location: CFG.location,
+      booking_provider: CFG.provider,
+      cta_placement: placement,
+      booking_attempt_id: a.id
+    });
+    if (w.GZBOOKER && w.GZBOOKER.show) w.GZBOOKER.show();
   });
 
-  // Wire our Book Now button
-  var el = document.getElementById("booking-button-860571");
-  if(el){
-    el.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked" });
+  /* ---------- init (once) ---------- */
+  var inited = false;
+  function start() {
+    if (inited || !w.GZBOOKER) return;
+    inited = true;
+    w.GZBOOKER.init({
+      businessId: CFG.businessId,
+      disableDefaultButton: true,
+      widgetPrimaryColor: '#0a0a0a',
+      bookingCallback: onBookingCallback,
+      closeCallback: onCloseCallback
+    });
+    // Auto-open when URL has ?gzauto=1 (e.g. Facebook "Book Now")
+    if (String(w.location.search).indexOf('gzauto=1') > -1) {
+      openAttempt('auto');
       w.GZBOOKER.show();
-    });
+    }
   }
 
-  // Wire sticky bar button if present
-  var el2 = document.getElementById("stickyBookBtn");
-  if(el2){
-    el2.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked", location: "sticky" });
-      w.GZBOOKER.show();
-    });
-  }
-
-  // gz-book buttons now open location picker first
-  document.querySelectorAll(".gz-book, #booking-button-860571").forEach(function(btn){
-    btn.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked" });
-      if(window.GZBOOKER) window.GZBOOKER.show();
-    });
-  });
-
-  // Auto-open if URL has ?gzauto=1 (useful for Facebook Book Now button tracking)
-  if(w.location.search.indexOf("gzauto=1") > -1){
-    w.GZBOOKER.show();
-  }
-
-}(window));
+  captureAttribution();
+  if (w.GZBOOKER) { start(); } else { w.addEventListener('load', start); }
+}(window, document));
 </script>
 
 
-<script>
-function if(window.GZBOOKER) window.GZBOOKER.show(){
-  document.getElementById('locPicker').classList.add('active');
-  document.body.style.overflow='hidden';
-}
-function closeLoc(){
-  document.getElementById('locPicker').classList.remove('active');
-  document.body.style.overflow='';
-}
-function bookWestlake(){
-  closeLoc();
-  // Small delay so picker closes cleanly before Uzeli opens
-  setTimeout(function(){
-    if(window.GZBOOKER) window.GZBOOKER.show();
-  }, 200);
-}
-function showTorrance(){
-  closeLoc();
-  setTimeout(function(){
-    document.getElementById('torrancePopup').classList.add('active');
-    document.body.style.overflow='hidden';
-  }, 200);
-}
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){if(typeof closeJoinPopup==='function')closeJoinPopup();closeLoc();closeTorrancePopup();}
-});
-document.getElementById('locPicker').addEventListener('click',function(e){
-  if(e.target===this) closeLoc();
-});
-</script>
 
 
 
@@ -2731,18 +2892,6 @@ document.getElementById('locPicker').addEventListener('click',function(e){
   <div class="footer-legal">© 2025 Kala Studio · Westlake Village, CA<br>Powered by <a href="mailto:thextramilegroup@outlook.com" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(221,214,204,0.2)">The XtraMile Group LLC</a></div>
   <div class="footer-needsite">Need a site like this? <a href="mailto:thextramilegroup@outlook.com" class="footer-needsite-link">Let's talk.</a></div>
 </footer>
-<div class="sticky-bar" id="stickyBar">
-  <div class="sticky-left">
-    <span class="sticky-name">Kala Studio</span>
-    <span class="sticky-sub">Westlake Village · Open Today</span>
-  </div>
-  <div class="sticky-right">
-    <a href="https://wa.me/18053000328?text=Hi%20Kala%20Studio%2C%20I%27d%20like%20to%20book%20an%20appointment." target="_blank" class="sticky-wa">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.135.561 4.14 1.54 5.873L.057 23.985l6.293-1.648A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.366l-.36-.214-3.733.979 1.001-3.648-.235-.374A9.818 9.818 0 1 1 12 21.818z"/></svg>
-    </a>
-    <a href="#" class="sticky-book gz-book" id="stickyBookBtn">Book Now</a>
-  </div>
-</div>
 
 
 
@@ -2826,188 +2975,6 @@ const loyaltyIo=new IntersectionObserver(entries=>{
 const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl.closest)loyaltyIo.observe(_stampsEl.closest('section'));
 </script>
 
-  <!-- ============================================
-       GROWTHZILLA / UZELI BOOKING WIDGET
-       businessId: 1b4840f9-8dcc-4cb8-a33d-13f276dfac29
-       Implementation: official embed, modal overlay
-       disableDefaultButton: true — all CTAs wired manually
-  ============================================ -->
-
-  <!-- Step 1: Load GZBooker library (synchronous — required before config callback) -->
-  
-<script>
-/* ── RESULTS CAROUSEL ─────────────────────────────── */
-(function(){
-  var carousel = document.getElementById('resultsCarousel');
-  var dots = document.querySelectorAll('.rc-dot');
-  if(!carousel) return;
-  var slides = carousel.querySelectorAll('.rc-slide');
-  var current = 0;
-  var autoTimer;
-
-  function updateDots(idx){
-    dots.forEach(function(d,i){ if(d) d.classList.toggle('active', i===idx); });
-  }
-
-  window.rcGoTo = function(idx){
-    current = idx;
-    var slide = slides[idx];
-    if(!slide) return;
-    var offset = slide.offsetLeft - (carousel.offsetWidth - slide.offsetWidth)/2;
-    carousel.scrollTo({left: offset, behavior:'smooth'});
-    updateDots(idx);
-    clearInterval(autoTimer);
-    autoTimer = setInterval(autoNext, 3800);
-  };
-
-  function autoNext(){
-    current = (current + 1) % slides.length;
-    rcGoTo(current);
-  }
-
-  window.rcPrev = function(){ rcGoTo((current - 1 + slides.length) % slides.length); };
-  window.rcNext = function(){ rcGoTo((current + 1) % slides.length); };
-
-  carousel.addEventListener('scroll', function(){
-    if(!carousel) return;
-    var center = carousel.scrollLeft + carousel.offsetWidth/2;
-    var closest = 0, minDist = Infinity;
-    slides.forEach(function(s,i){
-      if(!s) return;
-      var d = Math.abs(s.offsetLeft + s.offsetWidth/2 - center);
-      if(d < minDist){ minDist = d; closest = i; }
-    });
-    if(closest !== current){ current = closest; updateDots(current); }
-  }, {passive:true});
-
-  autoTimer = setInterval(autoNext, 3800);
-})();
-</script>
-<!-- GIFT CARD BALANCE WIDGET -->
-<script type="text/javascript" src="https://widgets.growthzilla.com/gc/gc.js"></script>
-<script type="text/javascript">
-(function(w){
-  function initGC(){
-    if(w.GZGC){
-      w.GZGC.init("giftcardwidgetholder", "TAX", {
-        overlayModal: true,
-        defaultButton: false
-      });
-      var el = document.getElementById("giftcard-button-992062");
-      if(el){
-        el.addEventListener("click", function(e){
-          e.preventDefault();
-          w.GZGC.showModal();
-        });
-      }
-    } else {
-      setTimeout(initGC, 200);
-    }
-  }
-  if(document.readyState === 'complete'){
-    initGC();
-  } else {
-    w.addEventListener('load', initGC);
-  }
-}(window));
-</script>
-<script type="text/javascript" src="https://book.appt.cm/js/gzbooker.js"></script>
-<script type="text/javascript" src="https://book.appt.cm/remote/api/booking/config/1b4840f9-8dcc-4cb8-a33d-13f276dfac29?callback=GZBOOKER.configure"></script>
-<script type="text/javascript">
-(function(w){
-
-  if(!w.GZBOOKER) return;
-
-  w.GZBOOKER.init({
-    businessId: "1b4840f9-8dcc-4cb8-a33d-13f276dfac29",
-    disableDefaultButton: true,
-    widgetPrimaryColor: "#0a0a0a",
-
-    // ── GTM: fires when appointment is BOOKED ──────────────────
-    bookingCallback: function(userInfo){
-      if(w.dataLayer) w.dataLayer.push({
-        event: "appointment_booked",
-        booking_info: userInfo
-      });
-    },
-
-    // ── GTM: fires when widget is CLOSED ──────────────────────
-    closeCallback: function(count, businessInfo){
-      if(w.dataLayer) w.dataLayer.push({
-        event: count > 0 ? "booking_completed" : "booking_abandoned",
-        appointments_booked: count
-      });
-    }
-  });
-
-  // Wire our Book Now button
-  var el = document.getElementById("booking-button-860571");
-  if(el){
-    el.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked" });
-      w.GZBOOKER.show();
-    });
-  }
-
-  // Wire sticky bar button if present
-  var el2 = document.getElementById("stickyBookBtn");
-  if(el2){
-    el2.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked", location: "sticky" });
-      w.GZBOOKER.show();
-    });
-  }
-
-  // gz-book buttons now open location picker first
-  document.querySelectorAll(".gz-book, #booking-button-860571").forEach(function(btn){
-    btn.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked" });
-      if(window.GZBOOKER) window.GZBOOKER.show();
-    });
-  });
-
-  // Auto-open if URL has ?gzauto=1 (useful for Facebook Book Now button tracking)
-  if(w.location.search.indexOf("gzauto=1") > -1){
-    w.GZBOOKER.show();
-  }
-
-}(window));
-</script>
-
-
-<script>
-function if(window.GZBOOKER) window.GZBOOKER.show(){
-  document.getElementById('locPicker').classList.add('active');
-  document.body.style.overflow='hidden';
-}
-function closeLoc(){
-  document.getElementById('locPicker').classList.remove('active');
-  document.body.style.overflow='';
-}
-function bookWestlake(){
-  closeLoc();
-  // Small delay so picker closes cleanly before Uzeli opens
-  setTimeout(function(){
-    if(window.GZBOOKER) window.GZBOOKER.show();
-  }, 200);
-}
-function showTorrance(){
-  closeLoc();
-  setTimeout(function(){
-    document.getElementById('torrancePopup').classList.add('active');
-    document.body.style.overflow='hidden';
-  }, 200);
-}
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){if(typeof closeJoinPopup==='function')closeJoinPopup();closeLoc();closeTorrancePopup();}
-});
-document.getElementById('locPicker').addEventListener('click',function(e){
-  if(e.target===this) closeLoc();
-});
-</script>
 
 
 
