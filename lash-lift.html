@@ -1525,14 +1525,7 @@ const loyaltyIo=new IntersectionObserver(entries=>{
 const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl.closest)loyaltyIo.observe(_stampsEl.closest('section'));
 </script>
 
-  <!-- ============================================
-       GROWTHZILLA / UZELI BOOKING WIDGET
-       businessId: 1b4840f9-8dcc-4cb8-a33d-13f276dfac29
-       Implementation: official embed, modal overlay
-       disableDefaultButton: true — all CTAs wired manually
-  ============================================ -->
 
-  <!-- Step 1: Load GZBooker library (synchronous — required before config callback) -->
   
 <script>
 /* ── RESULTS CAROUSEL ─────────────────────────────── */
@@ -1610,81 +1603,6 @@ const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl
   }
 }(window));
 </script>
-<script type="text/javascript" src="https://book.appt.cm/js/gzbooker.js"></script>
-<script type="text/javascript" src="https://book.appt.cm/remote/api/booking/config/1b4840f9-8dcc-4cb8-a33d-13f276dfac29?callback=GZBOOKER.configure"></script>
-<script type="text/javascript">
-(function(w){
-
-  if(!w.GZBOOKER) return;
-
-  w.GZBOOKER.init({
-    businessId: "1b4840f9-8dcc-4cb8-a33d-13f276dfac29",
-    disableDefaultButton: true,
-    widgetPrimaryColor: "#0a0a0a",
-
-    // ── GTM: fires when appointment is BOOKED ──────────────────
-    bookingCallback: function(userInfo){
-      // PII-safe: userInfo is never pushed or logged. Legacy event kept (sanitized) for GTM compatibility.
-      var id = null;
-      try {
-        if (userInfo && typeof userInfo === "object") {
-          ["booking_id","bookingId","appointment_id","appointmentId","confirmation_id","confirmationId","confirmation_number","confirmationNumber"].some(function(k){
-            var v = userInfo[k]; if (typeof v === "number") v = String(v);
-            if (typeof v === "string" && /^[A-Za-z0-9_\-:.]{4,80}$/.test(v)) { id = v; return true; }
-            return false;
-          });
-        }
-      } catch(e) {}
-      var evt = { event: "appointment_booked", location: "westlake", booking_provider: "uzeli" };
-      if (id) evt.booking_id = id;
-      if(w.dataLayer) w.dataLayer.push(evt);
-    },
-
-    // ── GTM: fires when widget is CLOSED ──────────────────────
-    closeCallback: function(count, businessInfo){
-      if(w.dataLayer) w.dataLayer.push({
-        event: count > 0 ? "booking_completed" : "booking_abandoned",
-        appointments_booked: count
-      });
-    }
-  });
-
-  // Wire our Book Now button
-  var el = document.getElementById("booking-button-860571");
-  if(el){
-    el.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked" });
-      w.GZBOOKER.show();
-    });
-  }
-
-  // Wire sticky bar button if present
-  var el2 = document.getElementById("stickyBookBtn");
-  if(el2){
-    el2.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked", location: "westlake", cta_placement: "sticky" });
-      w.GZBOOKER.show();
-    });
-  }
-
-  // Wire ALL gz-book class buttons
-  document.querySelectorAll(".gz-book, #booking-button-860571").forEach(function(btn){
-    btn.addEventListener("click", function(e){
-      e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked" });
-      w.GZBOOKER.show();
-    });
-  });
-
-  // Auto-open if URL has ?gzauto=1 (useful for Facebook Book Now button tracking)
-  if(w.location.search.indexOf("gzauto=1") > -1){
-    w.GZBOOKER.show();
-  }
-
-}(window));
-</script>
 <script>
 function openJoinPopup(){
   document.getElementById('joinPopup').classList.add('active');
@@ -1705,17 +1623,13 @@ document.getElementById('joinPopup').addEventListener('click',function(e){
 
 
 
+<!-- Westlake booking (Uzeli / GZBooker). One library load, one init (in the shared module), one delegated listener. Westlake only - never reuse for Anaheim (Vagaro). -->
 <script type="text/javascript" src="https://book.appt.cm/js/gzbooker.js"></script>
 <script type="text/javascript" src="https://book.appt.cm/remote/api/booking/config/1b4840f9-8dcc-4cb8-a33d-13f276dfac29?callback=GZBOOKER.configure"></script>
-<script type="text/javascript">
-(function(w){
-  if(!w.GZBOOKER) return;
-  w.GZBOOKER.init({businessId:"1b4840f9-8dcc-4cb8-a33d-13f276dfac29",disableDefaultButton:true,widgetPrimaryColor:"#0a0a0a"});
-  ["booking-button-860571","booking-button-860571b"].forEach(function(id){
-    var el=document.getElementById(id);
-    if(el) el.addEventListener("click",function(e){e.preventDefault();w.GZBOOKER.show();});
-  });
-}(window));
+<script src="/js/kala-booking-tracking.js"></script>
+<script>
+/* Fallback: only runs if the shared module failed to load, so booking never breaks (no tracking in that case). */
+window.addEventListener('load',function(){var w=window;if(w.__kalaUzeliInit||!w.GZBOOKER)return;w.__kalaUzeliInit=true;w.GZBOOKER.init({businessId:"1b4840f9-8dcc-4cb8-a33d-13f276dfac29",disableDefaultButton:true,widgetPrimaryColor:"#0a0a0a"});document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('.gz-book');if(t){e.preventDefault();w.GZBOOKER.show();}});});
 </script>
 <script>
 // ── KALA STUDIO CHATBOT v3 ──────────────────────────────────
