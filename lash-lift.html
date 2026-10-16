@@ -1624,10 +1624,20 @@ const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl
 
     // ── GTM: fires when appointment is BOOKED ──────────────────
     bookingCallback: function(userInfo){
-      if(w.dataLayer) w.dataLayer.push({
-        event: "appointment_booked",
-        booking_info: userInfo
-      });
+      // PII-safe: userInfo is never pushed or logged. Legacy event kept (sanitized) for GTM compatibility.
+      var id = null;
+      try {
+        if (userInfo && typeof userInfo === "object") {
+          ["booking_id","bookingId","appointment_id","appointmentId","confirmation_id","confirmationId","confirmation_number","confirmationNumber"].some(function(k){
+            var v = userInfo[k]; if (typeof v === "number") v = String(v);
+            if (typeof v === "string" && /^[A-Za-z0-9_\-:.]{4,80}$/.test(v)) { id = v; return true; }
+            return false;
+          });
+        }
+      } catch(e) {}
+      var evt = { event: "appointment_booked", location: "westlake", booking_provider: "uzeli" };
+      if (id) evt.booking_id = id;
+      if(w.dataLayer) w.dataLayer.push(evt);
     },
 
     // ── GTM: fires when widget is CLOSED ──────────────────────
@@ -1654,7 +1664,7 @@ const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl
   if(el2){
     el2.addEventListener("click", function(e){
       e.preventDefault();
-      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked", location: "sticky" });
+      if(w.dataLayer) w.dataLayer.push({ event: "booking_button_clicked", location: "westlake", cta_placement: "sticky" });
       w.GZBOOKER.show();
     });
   }
