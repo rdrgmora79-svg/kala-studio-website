@@ -972,6 +972,16 @@ footer{text-align:center}
   }
   .an-address span{color:rgba(198,169,106,0.6)}
 
+  /* Booking (Vagaro) */
+  .an-book{background:#0a0802;padding:clamp(56px,8vw,96px) clamp(20px,5vw,60px);text-align:center;border-top:1px solid rgba(198,169,106,0.1)}
+  .an-book-inner{max-width:900px;margin:0 auto}
+  .an-book-eyebrow{font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(198,169,106,0.85);margin-bottom:14px;font-family:'Montserrat',sans-serif}
+  .an-book-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(28px,5vw,44px);font-weight:300;color:#DDD6CC;line-height:1.15;margin:0 0 28px}
+  .an-book-title em{font-style:italic;color:var(--gold)}
+  .an-book-widget{background:#fff;border-radius:2px;min-height:120px;padding:8px 0}
+  .an-book-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 28px;background:var(--gold);color:#0a0a0a;text-decoration:none;font-family:'Montserrat',sans-serif;margin-top:28px}
+  .an-book-btn:hover{filter:brightness(1.08)}
+
   /* Credentials bar */
   .an-creds{
     background:#0d0b08;
@@ -1143,6 +1153,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <strong>Anaheim, we're open.</strong>
     </p>
     <div class="an-address">📍 <span>263 S Euclid St</span> · Anaheim, CA 92802</div>
+    <a href="#book" class="an-book-btn">Book Now →</a>
   </div>
 </section>
 
@@ -1217,14 +1228,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- BOOKING (Vagaro) - isolated mount point. Official widget code is pending.
+<!-- BOOKING (Vagaro) - Anaheim only. Official Vagaro widget code (embedded) lives in #anaheim-vagaro-booking.
      Do NOT add Uzeli/GZBooker, Westlake IDs or Westlake callbacks here. -->
-<div id="anaheim-vagaro-booking"></div>
+<section class="an-book" id="book">
+  <div class="an-book-inner">
+    <div class="an-book-eyebrow">Kala Anaheim</div>
+    <h2 class="an-book-title">Book your <em>appointment.</em></h2>
+    <div id="anaheim-vagaro-booking" class="an-book-widget">
+<div id='frameTitle' class='embedded-widget-title' style='font-size: 23px; color: #333;font-family:Arial, Helvetica, sans-serif; line-height:24px; padding: 18px 10px 8px; text-align: center; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;'></div>
+<div class="vagaro" style="width:250px; padding:0; border:0; margin:0 auto; text-align:center;"><style>.vagaro a {font-size:14px; color:#AAA; text-decoration:none;}</style><a href="https://www.vagaro.com/pro/">Powered by Vagaro</a>&nbsp;<a href="https://www.vagaro.com/pro/salon-software">Salon Software</a>,&nbsp;<a href="https://www.vagaro.com/pro/spa-software">Spa Software</a>&nbsp;&amp;&nbsp;<a href="https://www.vagaro.com/pro/fitness-software">Fitness Software</a><script type="text/javascript" defer src="https://www.vagaro.com//resources/WidgetEmbeddedLoader/OZqqE3SrCpScT3qmV35y79oz34mC2PeFJ4mC30m9dSycvCu7gCmjZcoapOUc9CvdfQOW?v=zwU3PHTaMyMKHthe2w39aiiVEleQVGOJvlK9n46JHZr#"></script></div>
+    </div>
+  </div>
+</section>
 <script>
 window.KALA_ANAHEIM_BOOKING = {
   location: "anaheim",
   booking_provider: "vagaro",
-  status: "awaiting_widget"
+  status: "widget_embedded"
 };
 </script>
 
