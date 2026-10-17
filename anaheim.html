@@ -977,7 +977,7 @@ footer{text-align:center}
   .an-book-eyebrow{font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(198,169,106,0.85);margin-bottom:14px;font-family:'Montserrat',sans-serif}
   .an-book-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(28px,5vw,44px);font-weight:300;color:#DDD6CC;line-height:1.15;margin:0 0 28px}
   .an-book-title em{font-style:italic;color:var(--gold)}
-  .an-book-widget{background:#fff;border-radius:2px;min-height:120px;padding:8px 0}
+  .an-book-widget{min-height:60px;padding:8px 0}
   .an-book-fallback{margin:22px 0 0;font-size:14px;color:rgba(221,214,204,0.78);font-family:'Montserrat',sans-serif}
   .an-book-fallback a{color:var(--gold);font-weight:700;letter-spacing:1px;text-decoration:underline;text-underline-offset:3px;margin-left:6px}
   .an-book-fallback--alert{padding:14px 16px;border:1px solid rgba(198,169,106,0.45)}
@@ -1229,15 +1229,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- BOOKING (Vagaro) - Anaheim only. Official Vagaro widget code (embedded) lives in #anaheim-vagaro-booking.
+<!-- BOOKING (Vagaro Popup) - Anaheim only. Official Vagaro Popup widget code lives in #anaheim-vagaro-booking.
      Do NOT add Uzeli/GZBooker, Westlake IDs or Westlake callbacks here. -->
 <section class="an-book" id="book">
   <div class="an-book-inner">
     <div class="an-book-eyebrow">Kala Anaheim</div>
     <h2 class="an-book-title">Book your <em>appointment.</em></h2>
+    <script>
+    /* Detector placed BEFORE the official (synchronous) Vagaro loader so its load/error events are not missed. */
+    window.__kalaAnVagaro={ok:false,err:false};
+    (function(st){
+      function isV(e){var t=e.target;return t&&t.tagName==='SCRIPT'&&/vagaro\.com/i.test(t.src||'');}
+      window.addEventListener('error',function(e){if(isV(e))st.err=true;},true);
+      document.addEventListener('load',function(e){if(isV(e))st.ok=true;},true); /* load events stop at document, never reach window */
+    })(window.__kalaAnVagaro);
+    </script>
     <div id="anaheim-vagaro-booking" class="an-book-widget">
-<div id='frameTitle' class='embedded-widget-title' style='font-size: 23px; color: #333;font-family:Arial, Helvetica, sans-serif; line-height:24px; padding: 18px 10px 8px; text-align: center; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;'></div>
-<div class="vagaro" style="width:250px; padding:0; border:0; margin:0 auto; text-align:center;"><style>.vagaro a {font-size:14px; color:#AAA; text-decoration:none;}</style><a href="https://www.vagaro.com/pro/">Powered by Vagaro</a>&nbsp;<a href="https://www.vagaro.com/pro/salon-software">Salon Software</a>,&nbsp;<a href="https://www.vagaro.com/pro/spa-software">Spa Software</a>&nbsp;&amp;&nbsp;<a href="https://www.vagaro.com/pro/fitness-software">Fitness Software</a><script type="text/javascript" defer src="https://www.vagaro.com//resources/WidgetEmbeddedLoader/OZqqE3SrCpScT3qmV35y79oz34mC2PeFJ4mC30m9dSycvCu7gCmjZcoapOUc9CvdfQOW?v=zwU3PHTaMyMKHthe2w39aiiVEleQVGOJvlK9n46JHZr#"></script></div>
+<div class="vagaro" style="width:250px; padding:0; border:0; margin:0 auto; text-align:center; font-size:14px; color:#AAA;"><style>.vagaro a {font-size:14px; color:#AAA; text-decoration:none;}</style><a href="https://www.vagaro.com/pro/">Powered by Vagaro</a>&nbsp;<a href="https://www.vagaro.com/pro/salon-software">Salon Software</a>,&nbsp;<a href="https://www.vagaro.com/pro/spa-software">Spa Software</a>&nbsp;&amp;&nbsp;<a href="https://www.vagaro.com/pro/fitness-software">Fitness Software</a><script type="text/javascript" src="https://www.vagaro.com//resources/WidgetPopupLoader/OZqqE3SrCpScT3qmV35y79oz34mC2PlFK9lRsiWJcyxapkUcvCu7gCmjZcoapOUc9CvdfQOW?v=rdycZ0lXPyO2hBwgJCqVY7OYsaPuXRIUzVbROyDrvoG0#"></script></div>
     </div>
     <p class="an-book-fallback" id="anaheim-vagaro-fallback" hidden>
       <span id="anaheim-vagaro-fallback-msg">Prefer to book directly?</span>
@@ -1246,13 +1254,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 <script>
-/* Anaheim booking (Vagaro). Embedded widget is the primary experience.
-   direct_url = official Vagaro booking URL (fallback link). Leave "" until the official URL is provided:
-   with an empty value the fallback stays hidden and no URL is invented. */
+/* Anaheim booking (Vagaro). The official Popup widget is the primary experience.
+   direct_url = official Vagaro Link URL (visible fallback). Leave "" until it is provided:
+   with an empty value the fallback stays hidden and no URL is invented.
+   Only https URLs on vagaro.com or *.vagaro.com are accepted; Vagaro promo paths (/pro, /resources) are refused. */
 window.KALA_ANAHEIM_BOOKING = {
   location: "anaheim",
   booking_provider: "vagaro",
-  status: "widget_embedded",
+  status: "popup_loader",
   direct_url: ""
 };
 (function(){
@@ -1262,17 +1271,26 @@ window.KALA_ANAHEIM_BOOKING = {
   var link=document.getElementById('anaheim-vagaro-fallback-link');
   var msg=document.getElementById('anaheim-vagaro-fallback-msg');
   if(!box||!fb||!link) return;
-  var url=cfg.direct_url||'';
-  if(/^https:\/\/([a-z0-9-]+\.)?vagaro\.com\//i.test(url)){ link.href=url; fb.hidden=false; } else { return; }
+  function isVagaroUrl(u){
+    try{
+      var x=new URL(u);
+      return x.protocol==='https:' && !x.username && !x.password && x.port==='' &&
+        (x.hostname==='vagaro.com' || /\.vagaro\.com$/.test(x.hostname)) &&
+        !/^\/(pro|resources)(\/|$)/i.test(x.pathname.replace(/\/+/g,'/'));
+    }catch(e){ return false; }
+  }
+  if(!isVagaroUrl(cfg.direct_url)) return;
+  link.href=cfg.direct_url; fb.hidden=false;
+  var st=window.__kalaAnVagaro||{ok:false,err:false};
+  var done=false;
   function failed(){
+    if(done) return; done=true;
     cfg.status='widget_unavailable';
     msg.textContent="The booking widget didn't load.";
     fb.classList.add('an-book-fallback--alert');
-    fb.hidden=false;
   }
-  var loader=box.querySelector('script[src*="vagaro.com"]');
-  if(loader) loader.addEventListener('error',failed);
-  setTimeout(function(){ if(!box.querySelector('iframe')) failed(); },8000);
+  if(st.err) failed();
+  else setTimeout(function(){ if(st.err||!st.ok) failed(); },st.ok?0:8000);
 })();
 </script>
 
