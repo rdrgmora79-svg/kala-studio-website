@@ -11,7 +11,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BeautySalon","name":"The Thread Beauty by Kala Studio","alternateName":"The Thread Beauty","description":"The Thread Beauty by Kala Studio — formerly The Thread Beauty on Hawthorne Blvd, Torrance. Brow threading, lash lift, waxing and more. Walk-ins welcome.","url":"https://www.mykalastudio.com/torrance","telephone":"+13109947586","address":{"@type":"PostalAddress","streetAddress":"22823 Hawthorne Blvd","addressLocality":"Torrance","addressRegion":"CA","postalCode":"90505"},"geo":{"@type":"GeoCoordinates","latitude":33.8198476,"longitude":-118.3522002},"areaServed":["Torrance","Redondo Beach","Lomita","Carson","Gardena","Hawthorne","Manhattan Beach","South Bay"],"keywords":"The Thread Beauty Torrance, brow threading Torrance, eyebrow threading Hawthorne Blvd, Kala Studio Torrance, The Thread Beauty by Kala"}
+  {"@context":"https://schema.org","@type":"BeautySalon","@id":"https://www.mykalastudio.com/torrance#business","name":"The Thread Beauty by Kala Studio","alternateName":"The Thread Beauty","description":"The Thread Beauty by Kala Studio — formerly The Thread Beauty on Hawthorne Blvd, Torrance. Brow threading, lash lift, waxing and more. Walk-ins welcome.","url":"https://www.mykalastudio.com/torrance","telephone":"+13109947586","address":{"@type":"PostalAddress","streetAddress":"22823 Hawthorne Blvd","addressLocality":"Torrance","addressRegion":"CA","postalCode":"90505"},"geo":{"@type":"GeoCoordinates","latitude":33.8198476,"longitude":-118.3522002},"areaServed":["Torrance","Redondo Beach","Lomita","Carson","Gardena","Hawthorne","Manhattan Beach","South Bay"],"keywords":"The Thread Beauty Torrance, brow threading Torrance, eyebrow threading Hawthorne Blvd, Kala Studio Torrance, The Thread Beauty by Kala"}
   </script>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-52N72MXJ');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,6 +139,7 @@
       <div class="brand-by">by Kala Studio</div>
     </div>
     <h1 class="hero-tagline">The South Bay's favorite beauty studio<br>is becoming <em>something greater.</em></h1>
+    <p style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(198,169,106,0.7);margin-top:14px;font-family:'Montserrat',sans-serif">Perfect Brows · Amazing Lashes</p>
     <p class="hero-sub">Same location on Hawthorne Blvd. The craft you know and trust — now part of the Kala family, with a team of rockstar artists and a standard that doesn't settle.</p>
     <div class="hero-cta-row">
       <a href="#booking" class="btn-gold">Book Now →</a>
@@ -276,6 +277,35 @@ var ticking=false;
 window.addEventListener('scroll',function(){
   if(!ticking){requestAnimationFrame(function(){if(window.scrollY>60)nav.classList.add('scrolled');else nav.classList.remove('scrolled');ticking=false});ticking=true}
 },{passive:true});
+</script>
+<script>
+/* Kala Torrance · click events for GTM (Torrance/Square only: no Uzeli, no Westlake IDs, no PII).
+   phone_click, directions_click and booking_button_clicked carry location + cta_placement only. */
+(function (w, d) {
+  'use strict';
+  if (w.__kalaTorTrack) return;
+  w.__kalaTorTrack = true;
+  w.dataLayer = w.dataLayer || [];
+  function placement(a) {
+    if (a.closest('nav')) return 'nav';
+    if (a.closest('.hero-cta-row')) return 'hero';
+    if (a.closest('.svc-desc')) return 'services';
+    if (a.closest('#booking')) return 'booking_section';
+    return 'other';
+  }
+  d.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var h = a.getAttribute('href') || '', ev = null;
+    if (/^tel:/i.test(h)) ev = 'phone_click';
+    else if (/maps\.google\.com|google\.com\/maps|maps\.app\.goo\.gl/i.test(h)) ev = 'directions_click';
+    else if (h === '#booking') ev = 'booking_button_clicked';
+    if (!ev) return;
+    var p = { event: ev, location: 'torrance', cta_placement: placement(a) };
+    if (ev === 'booking_button_clicked') p.booking_provider = 'square';
+    w.dataLayer.push(p);
+  }, true);
+})(window, document);
 </script>
 </body>
 </html>

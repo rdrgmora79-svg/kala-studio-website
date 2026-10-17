@@ -978,9 +978,6 @@ footer{text-align:center}
   .an-book-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(28px,5vw,44px);font-weight:300;color:#DDD6CC;line-height:1.15;margin:0 0 28px}
   .an-book-title em{font-style:italic;color:var(--gold)}
   .an-book-widget{min-height:60px;padding:8px 0}
-  .an-book-fallback{margin:22px 0 0;font-size:14px;color:rgba(221,214,204,0.78);font-family:'Montserrat',sans-serif}
-  .an-book-fallback a{color:var(--gold);font-weight:700;letter-spacing:1px;text-decoration:underline;text-underline-offset:3px;margin-left:6px}
-  .an-book-fallback--alert{padding:14px 16px;border:1px solid rgba(198,169,106,0.45)}
   .an-book-btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 28px;background:var(--gold);color:#0a0a0a;text-decoration:none;font-family:'Montserrat',sans-serif;margin-top:28px}
   .an-book-btn:hover{filter:brightness(1.08)}
 
@@ -1235,64 +1232,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="an-book-inner">
     <div class="an-book-eyebrow">Kala Anaheim</div>
     <h2 class="an-book-title">Book your <em>appointment.</em></h2>
-    <script>
-    /* Detector placed BEFORE the official (synchronous) Vagaro loader so its load/error events are not missed. */
-    window.__kalaAnVagaro={ok:false,err:false};
-    (function(st){
-      function isV(e){var t=e.target;return t&&t.tagName==='SCRIPT'&&/vagaro\.com/i.test(t.src||'');}
-      window.addEventListener('error',function(e){if(isV(e))st.err=true;},true);
-      document.addEventListener('load',function(e){if(isV(e))st.ok=true;},true); /* load events stop at document, never reach window */
-    })(window.__kalaAnVagaro);
-    </script>
     <div id="anaheim-vagaro-booking" class="an-book-widget">
 <div class="vagaro" style="width:250px; padding:0; border:0; margin:0 auto; text-align:center; font-size:14px; color:#AAA;"><style>.vagaro a {font-size:14px; color:#AAA; text-decoration:none;}</style><a href="https://www.vagaro.com/pro/">Powered by Vagaro</a>&nbsp;<a href="https://www.vagaro.com/pro/salon-software">Salon Software</a>,&nbsp;<a href="https://www.vagaro.com/pro/spa-software">Spa Software</a>&nbsp;&amp;&nbsp;<a href="https://www.vagaro.com/pro/fitness-software">Fitness Software</a><script type="text/javascript" src="https://www.vagaro.com//resources/WidgetPopupLoader/OZqqE3SrCpScT3qmV35y79oz34mC2PlFK9lRsiWJcyxapkUcvCu7gCmjZcoapOUc9CvdfQOW?v=rdycZ0lXPyO2hBwgJCqVY7OYsaPuXRIUzVbROyDrvoG0#"></script></div>
     </div>
-    <p class="an-book-fallback" id="anaheim-vagaro-fallback" hidden>
-      <span id="anaheim-vagaro-fallback-msg">Prefer to book directly?</span>
-      <a id="anaheim-vagaro-fallback-link" href="#" target="_blank" rel="noopener">Book on Vagaro →</a>
-    </p>
   </div>
 </section>
-<script>
-/* Anaheim booking (Vagaro). The official Popup widget is the primary experience.
-   direct_url = official Vagaro Link URL (visible fallback). Leave "" until it is provided:
-   with an empty value the fallback stays hidden and no URL is invented.
-   Only https URLs on vagaro.com or *.vagaro.com are accepted; Vagaro promo paths (/pro, /resources) are refused. */
-window.KALA_ANAHEIM_BOOKING = {
-  location: "anaheim",
-  booking_provider: "vagaro",
-  status: "popup_loader",
-  direct_url: "https://www.vagaro.com/Users/BusinessWidget.aspx?enc=MMLjhIwJMcwFQhXLL7ifVPqEaPsqRHEpO9+pgEWmbhyiG8hr5qYO8CivfIeQnMFwaNLQFf2Ta3bnKjDGl8RaI5aSW2a5ag9IwnkFCMl4EH8GxfXtkhdHS8oQb5oA7WCOAtJ8ofsYgPCa3B6pe5RlyWMjf0wLRcZQsnaRd2fd/TtQ0PPANUGhW6RNg+3RvMFazh2q2vQU63zL1BOJMCGDCkDNxG6bRwUE9pGJD1TazwifEbbe73lVq9XGUPEcHLqgnlbyHUTW4mZG+ZloRns0CB5rw8cCEWQKNIIdWFoX36vyWVc52FCN8Qa2J3Phb9lr8LpJ9ooB+x6J2El2as4egMt94PoY3LtBcuZuOH6n9tUBpu34nqJOdJB3GtXRGdFjg/qWO8Cc120j/ne/7pBMXb4xodWvzasah/ov53cTMh58g/ar8i+DT7O/5/B7ePiJMG+FEAe4xNd0zq0kBtri2g=="
-};
-(function(){
-  var cfg=window.KALA_ANAHEIM_BOOKING;
-  var box=document.getElementById('anaheim-vagaro-booking');
-  var fb=document.getElementById('anaheim-vagaro-fallback');
-  var link=document.getElementById('anaheim-vagaro-fallback-link');
-  var msg=document.getElementById('anaheim-vagaro-fallback-msg');
-  if(!box||!fb||!link) return;
-  function isVagaroUrl(u){
-    try{
-      var x=new URL(u);
-      return x.protocol==='https:' && !x.username && !x.password && x.port==='' &&
-        (x.hostname==='vagaro.com' || /\.vagaro\.com$/.test(x.hostname)) &&
-        !/^\/(pro|resources)(\/|$)/i.test(x.pathname.replace(/\/+/g,'/'));
-    }catch(e){ return false; }
-  }
-  if(!isVagaroUrl(cfg.direct_url)) return;
-  link.href=cfg.direct_url; fb.hidden=false;
-  var st=window.__kalaAnVagaro||{ok:false,err:false};
-  var done=false;
-  function failed(){
-    if(done) return; done=true;
-    cfg.status='widget_unavailable';
-    msg.textContent="The booking widget didn't load.";
-    fb.classList.add('an-book-fallback--alert');
-  }
-  if(st.err) failed();
-  else setTimeout(function(){ if(st.err||!st.ok) failed(); },st.ok?0:8000);
-})();
-</script>
 <script>
 /* Kala Anaheim · Vagaro Popup CTAs + booking attempt.
    Anaheim/Vagaro ONLY: no Uzeli/GZBooker, no Westlake IDs or callbacks.
@@ -1341,13 +1285,10 @@ window.KALA_ANAHEIM_BOOKING = {
   }
 
   /* the Vagaro-rendered trigger (never one of the "Powered by Vagaro" promo links) */
-  function isPromo(el) { return /vagaro\.com\/pro(\/|$)/i.test((el.getAttribute && el.getAttribute('href')) || ''); }
+  /* the official Vagaro Popup loader injects its own button (a.loader-btn-html) where the loader <script> sits */
   function findTrigger() {
     var box = d.getElementById(BOX_ID);
-    if (!box) return null;
-    var c = box.querySelectorAll('a,button,[role="button"],[onclick]');
-    for (var i = 0; i < c.length; i++) { if (!isPromo(c[i])) return c[i]; }
-    return null;
+    return box ? box.querySelector('.loader-btn-html') : null;
   }
   function openPopup(placement) {
     openAttempt(placement);
@@ -1361,9 +1302,8 @@ window.KALA_ANAHEIM_BOOKING = {
   var box = d.getElementById(BOX_ID);
   if (box) {
     box.addEventListener('click', function (e) {
-      var t = e.target;
-      while (t && t !== box && !(t.tagName === 'A' || t.tagName === 'BUTTON' || (t.getAttribute && t.getAttribute('role') === 'button'))) t = t.parentNode;
-      if (t && t !== box && !isPromo(t)) openAttempt('booking_section');
+      var t = e.target && e.target.closest ? e.target.closest('.loader-btn-html') : null;
+      if (t && box.contains(t)) openAttempt('booking_section');
     }, true);
     if (box.hasAttribute('data-an-hidden') && w.MutationObserver) {
       var untab = function () {
