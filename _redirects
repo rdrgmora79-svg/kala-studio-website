@@ -1,0 +1,7 @@
+# Retired public backup copies of the homepage -> permanent redirect to /
+/index1       /  301
+/index1.html  /  301
+/index2       /  301
+/index2.html  /  301
+/index3       /  301
+/index3.html  /  301
