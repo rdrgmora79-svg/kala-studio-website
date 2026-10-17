@@ -7,7 +7,8 @@
    - Westlake/Uzeli only. Do not reuse this block for Anaheim/Vagaro. */
 (function (w, d) {
   'use strict';
-  if (w.__kalaUzeliInit) return;
+  // Inert if already loaded, or if the inline fallback (loader) already took over this page view.
+  if (w.__kalaUzeliInit || w.__kalaFallbackInit) return;
   w.__kalaUzeliInit = true;
 
   var CFG = {
@@ -210,12 +211,7 @@
     return 'other';
   }
 
-  d.addEventListener('click', function (e) {
-    var t = e.target;
-    if (!t || !t.closest) return;
-    var el = t.closest('.gz-book');
-    if (!el) return;
-    e.preventDefault();
+  function onCta(el) {
     var placement = placementFor(el);
     var a = openAttempt(placement);
     push({
@@ -226,6 +222,15 @@
       booking_attempt_id: a.id
     });
     if (w.GZBOOKER && w.GZBOOKER.show) w.GZBOOKER.show();
+  }
+
+  d.addEventListener('click', function (e) {
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var el = t.closest('.gz-book');
+    if (!el) return;
+    e.preventDefault();
+    onCta(el);
   });
 
   /* ---------- init (once) ---------- */
@@ -245,6 +250,8 @@
       bookingCallback: onBookingCallback,
       closeCallback: onCloseCallback
     });
+    // A CTA clicked while the module was still loading (queued by the inline loader)
+    if (w.__kalaPendingCta) { var pc = w.__kalaPendingCta; w.__kalaPendingCta = null; onCta(pc); }
     // Auto-open when URL has ?gzauto=1 (e.g. Facebook "Book Now")
     if (String(w.location.search).indexOf('gzauto=1') > -1) {
       openAttempt('auto');
@@ -253,5 +260,7 @@
   }
 
   captureAttribution();
-  if (w.GZBOOKER) { start(); } else { w.addEventListener('load', start); }
+  if (w.GZBOOKER) { start(); }
+  else if (d.readyState === 'complete') { w.setTimeout(start, 300); }   // module may arrive after window load
+  else { w.addEventListener('load', start); }
 }(window, document));

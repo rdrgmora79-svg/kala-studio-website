@@ -1486,11 +1486,45 @@ document.getElementById('joinPopup').addEventListener('click',function(e){
 <!-- Westlake booking (Uzeli / GZBooker). One library load, one init (in the shared module), one delegated listener. Westlake only - never reuse for Anaheim (Vagaro). -->
 <script type="text/javascript" src="https://book.appt.cm/js/gzbooker.js"></script>
 <script type="text/javascript" src="https://book.appt.cm/remote/api/booking/config/1b4840f9-8dcc-4cb8-a33d-13f276dfac29?callback=GZBOOKER.configure"></script>
-<script src="/js/kala-booking-tracking.js"></script>
+<!-- kala-booking-loader:start -->
 <script>
-/* Fallback: only runs if the shared module failed to load, so booking never breaks (no tracking in that case). */
-window.addEventListener('load',function(){var w=window;if(w.__kalaUzeliInit||!w.GZBOOKER)return;w.__kalaUzeliInit=true;w.GZBOOKER.init({businessId:"1b4840f9-8dcc-4cb8-a33d-13f276dfac29",disableDefaultButton:true,widgetPrimaryColor:"#0a0a0a"});document.addEventListener('click',function(e){var t=e.target&&e.target.closest&&e.target.closest('.gz-book');if(t){e.preventDefault();w.GZBOOKER.show();}});});
+/* Loads the shared Westlake booking module only if the server really returns JavaScript (this host answers
+   unknown paths with the homepage + HTTP 200). If the file is missing, is HTML, or has not started within 6s,
+   a minimal fallback keeps online booking working (without tracking). One click listener, one init, always. */
+(function (w, d) {
+  var MODULE = '/js/kala-booking-tracking.js', BID = '1b4840f9-8dcc-4cb8-a33d-13f276dfac29', LIMIT = 6000;
+  function onCta(e) {
+    var t = e.target && e.target.closest && e.target.closest('.gz-book');
+    if (!t || w.__kalaUzeliInit) return;                 // module active: it handles the click
+    e.preventDefault();
+    if (w.__kalaFallbackInit && w.GZBOOKER) w.GZBOOKER.show(); else w.__kalaPendingCta = t;
+  }
+  function fallback() {
+    if (w.__kalaUzeliInit || w.__kalaFallbackInit) return;
+    function go() {
+      if (w.__kalaUzeliInit || w.__kalaFallbackInit || !w.GZBOOKER) return;
+      w.__kalaFallbackInit = true;
+      w.GZBOOKER.init({ businessId: BID, disableDefaultButton: true, widgetPrimaryColor: '#0a0a0a' });
+      if (w.__kalaPendingCta) { w.__kalaPendingCta = null; w.GZBOOKER.show(); }
+    }
+    if (w.GZBOOKER) go(); else w.addEventListener('load', go);
+  }
+  d.addEventListener('click', onCta);
+  try {
+    fetch(MODULE, { credentials: 'same-origin' }).then(function (r) {
+      var ct = (r.headers.get('content-type') || '').toLowerCase();
+      if (!r.ok || !/javascript|ecmascript/.test(ct)) throw new Error('not javascript');
+      return r.text();
+    }).then(function (t) {
+      if (!t || /^\s*</.test(t)) throw new Error('html');
+      if (w.__kalaFallbackInit) return;                  // fallback already took over this page view
+      var s = d.createElement('script'); s.text = t; d.head.appendChild(s);
+    }).catch(fallback);
+  } catch (e) { fallback(); }
+  w.setTimeout(function () { if (!w.__kalaUzeliInit) fallback(); }, LIMIT);
+}(window, document));
 </script>
+<!-- kala-booking-loader:end -->
 
 <script>
 // ── KALA STUDIO CHATBOT v3 ──────────────────────────────────
