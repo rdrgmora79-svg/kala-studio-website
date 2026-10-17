@@ -5,5 +5,7 @@
 /index2.html  /  301
 /index3       /  301
 /index3.html  /  301
-/microblading / 301
-/microblading.html / 301
+
+# Microblading is not offered: page retired, explicit 301 (never the homepage fallback)
+/microblading /services 301
+/microblading.html /services 301
