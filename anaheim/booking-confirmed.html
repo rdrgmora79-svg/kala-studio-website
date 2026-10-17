@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Booking confirmed | Kala Anaheim</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-52N72MXJ');</script>
+<!-- End Google Tag Manager -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--black:#0a0a0a;--linen:#DDD6CC;--gold:#C6A96A}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--black);color:var(--linen);font-family:'Montserrat',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 20px;text-align:center}
+    .wrap{max-width:560px}
+    .brand{font-family:'Cormorant Garamond',serif;font-size:34px;letter-spacing:8px;color:var(--linen);margin-bottom:36px}
+    .eyebrow{font-size:13px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(198,169,106,0.85);margin-bottom:14px}
+    h1{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,6vw,46px);font-weight:300;line-height:1.15;margin-bottom:18px}
+    h1 em{font-style:italic;color:var(--gold)}
+    p{font-size:15px;line-height:1.7;color:rgba(221,214,204,0.82);margin-bottom:10px}
+    .addr{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:rgba(221,214,204,0.72);margin:22px 0 30px}
+    .btn{display:inline-block;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:14px 28px;background:var(--gold);color:#0a0a0a;text-decoration:none;margin:6px}
+    .btn--ghost{background:transparent;color:var(--gold);border:1.5px solid rgba(198,169,106,0.45)}
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52N72MXJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <main class="wrap">
+    <div class="brand">KALA</div>
+    <div class="eyebrow">Kala Anaheim</div>
+    <h1>Your appointment is <em>booked.</em></h1>
+    <p>Thank you. We look forward to seeing you.</p>
+    <div class="addr">263 S Euclid St · Anaheim, CA 92802</div>
+    <a class="btn" href="/anaheim">Back to Kala Anaheim</a>
+    <a class="btn btn--ghost" href="/">Kala Studio home</a>
+  </main>
+
+<script>
+/* Kala Anaheim · Vagaro: booking_confirmed (sanitized, deduplicated).
+   Anaheim/Vagaro ONLY: no Uzeli/GZBooker, no Westlake IDs or callbacks.
+   Fires ONLY here (Vagaro "Redirect After Booking"), never from a Book Now click, and only when a booking attempt
+   created by an Anaheim CTA exists in this tab's sessionStorage and has not been reported yet.
+   Payload carries no PII and no click IDs/UTMs (attribution stays in sessionStorage 'kala_attr'). */
+(function (w, d) {
+  'use strict';
+  var TTL = 30 * 60 * 1000, ATTEMPT_KEY = 'kala_an_attempt', SENT_KEY = 'kala_an_sent';
+  var PLACEMENTS = ['hero', 'nav', 'sticky', 'services', 'location_selector', 'booking_section', 'deals', 'other'];
+  function ssGet(k) { try { return w.sessionStorage.getItem(k); } catch (e) { return null; } }
+  function ssSet(k, v) { try { w.sessionStorage.setItem(k, v); } catch (e) { /* storage blocked */ } }
+  function ssDel(k) { try { w.sessionStorage.removeItem(k); } catch (e) { /* noop */ } }
+
+  var attempt = null, raw = ssGet(ATTEMPT_KEY);
+  if (raw) { try { attempt = JSON.parse(raw); } catch (e) { attempt = null; } }
+  if (!attempt || !attempt.id || typeof attempt.t !== 'number' || (Date.now() - attempt.t) >= TTL) return;   // direct visit / refresh / expired
+  if (!/^[A-Za-z0-9_\-]{8,80}$/.test(String(attempt.id))) return;
+
+  var sent = {};
+  try { sent = JSON.parse(ssGet(SENT_KEY) || '{}') || {}; } catch (e) { sent = {}; }
+  if (sent[attempt.id]) return;                                    // already reported for this attempt
+
+  var placement = PLACEMENTS.indexOf(attempt.placement) > -1 ? attempt.placement : 'other';
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({
+    event: 'booking_confirmed',
+    location: 'anaheim',
+    booking_provider: 'vagaro',
+    event_id: attempt.id,
+    booking_attempt_id: attempt.id,
+    cta_placement: placement,
+    confirm_source: 'vagaro_redirect',
+    value: 0,
+    currency: 'USD'
+  });
+  sent[attempt.id] = 1;
+  ssSet(SENT_KEY, JSON.stringify(sent));
+  ssDel(ATTEMPT_KEY);
+})(window, document);
+</script>
+</body>
+</html>

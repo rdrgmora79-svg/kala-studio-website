@@ -1154,7 +1154,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <em style="font-style:italic;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.25em;font-weight:300">Amazing Lashes.</em>
     </p>
     <div class="an-address">📍 <span>263 S Euclid St</span> · Anaheim, CA 92802</div>
-    <a href="#book" class="an-book-btn">Book Now →</a>
+    <a href="#book" class="an-book-btn" data-an-book="hero">Book Now →</a>
   </div>
 </section>
 
@@ -1292,6 +1292,98 @@ window.KALA_ANAHEIM_BOOKING = {
   if(st.err) failed();
   else setTimeout(function(){ if(st.err||!st.ok) failed(); },st.ok?0:8000);
 })();
+</script>
+<script>
+/* Kala Anaheim · Vagaro Popup CTAs + booking attempt.
+   Anaheim/Vagaro ONLY: no Uzeli/GZBooker, no Westlake IDs or callbacks.
+   Nothing is pushed to dataLayer here: booking_confirmed fires only on /anaheim/booking-confirmed. */
+(function (w, d) {
+  'use strict';
+  if (w.__kalaAnInit) return;
+  w.__kalaAnInit = true;
+  var TTL = 30 * 60 * 1000, BOX_ID = 'anaheim-vagaro-booking', ATTEMPT_KEY = 'kala_an_attempt';
+
+  function ssGet(k) { try { return w.sessionStorage.getItem(k); } catch (e) { return null; } }
+  function ssSet(k, v) { try { w.sessionStorage.setItem(k, v); } catch (e) { /* storage blocked */ } }
+  function uuid() {
+    try { if (w.crypto && w.crypto.randomUUID) return w.crypto.randomUUID(); } catch (e) { /* fall through */ }
+    return 'a' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+  }
+
+  /* attribution: sessionStorage only (same keys/format as the rest of the site); no cookie, never pushed */
+  var ATTR_KEYS = ['gclid', 'gbraid', 'wbraid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  (function captureAttribution() {
+    var found = {}, any = false, q = String(w.location.search || '').replace(/^\?/, '').split('&');
+    for (var i = 0; i < q.length; i++) {
+      var idx = q[i].indexOf('=');
+      if (idx < 1) continue;
+      var k = q[i].slice(0, idx), v = q[i].slice(idx + 1);
+      if (ATTR_KEYS.indexOf(k) === -1 || !v) continue;
+      try { v = decodeURIComponent(v.replace(/\+/g, ' ')); } catch (e) { continue; }
+      if (/^[\w\-.~ ]{1,200}$/.test(v)) { found[k] = v; any = true; }
+    }
+    if (any) ssSet('kala_attr', JSON.stringify(found));
+  })();
+
+  /* booking attempt: created when a CTA opens the popup, reused until confirmed or expired */
+  function loadAttempt() {
+    var raw = ssGet(ATTEMPT_KEY);
+    if (!raw) return null;
+    try { var o = JSON.parse(raw); if (o && o.id && (Date.now() - o.t) < TTL) return o; } catch (e) { /* ignore */ }
+    return null;
+  }
+  function openAttempt(placement) {
+    var cur = loadAttempt();
+    if (cur) return cur;
+    cur = { id: uuid(), t: Date.now(), placement: placement || 'other' };
+    ssSet(ATTEMPT_KEY, JSON.stringify(cur));
+    return cur;
+  }
+
+  /* the Vagaro-rendered trigger (never one of the "Powered by Vagaro" promo links) */
+  function isPromo(el) { return /vagaro\.com\/pro(\/|$)/i.test((el.getAttribute && el.getAttribute('href')) || ''); }
+  function findTrigger() {
+    var box = d.getElementById(BOX_ID);
+    if (!box) return null;
+    var c = box.querySelectorAll('a,button,[role="button"],[onclick]');
+    for (var i = 0; i < c.length; i++) { if (!isPromo(c[i])) return c[i]; }
+    return null;
+  }
+  function openPopup(placement) {
+    openAttempt(placement);
+    var t = findTrigger();
+    if (!t) return false;
+    t.click();
+    return true;
+  }
+
+  /* clicks on the Vagaro button itself (booking section) */
+  var box = d.getElementById(BOX_ID);
+  if (box) {
+    box.addEventListener('click', function (e) {
+      var t = e.target;
+      while (t && t !== box && !(t.tagName === 'A' || t.tagName === 'BUTTON' || (t.getAttribute && t.getAttribute('role') === 'button'))) t = t.parentNode;
+      if (t && t !== box && !isPromo(t)) openAttempt('booking_section');
+    }, true);
+    if (box.hasAttribute('data-an-hidden') && w.MutationObserver) {
+      var untab = function () {
+        var f = box.querySelectorAll('a,button,[role="button"]');
+        for (var i = 0; i < f.length; i++) f[i].setAttribute('tabindex', '-1');
+      };
+      untab();
+      new w.MutationObserver(untab).observe(box, { childList: true, subtree: true });
+    }
+  }
+
+  /* every Anaheim booking CTA: data-an-book="<cta_placement>" */
+  d.addEventListener('click', function (e) {
+    var el = e.target && e.target.closest ? e.target.closest('[data-an-book]') : null;
+    if (!el) return;
+    if (openPopup(el.getAttribute('data-an-book'))) { e.preventDefault(); return; }
+    var fb = el.getAttribute('data-an-fallback');
+    if (fb) { e.preventDefault(); w.location.href = fb; }   // popup not available: go to the Anaheim booking section
+  });
+})(window, document);
 </script>
 
 
