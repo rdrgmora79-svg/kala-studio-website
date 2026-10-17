@@ -1,4 +1,5 @@
 User-agent: *
-Allow: /
+Disallow: /microblading
+Disallow: /microblading.html
 
 Sitemap: https://www.mykalastudio.com/sitemap.xml
