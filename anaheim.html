@@ -1365,10 +1365,10 @@ const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl
 
 <!-- JOIN THE KALA TEAM POPUP -->
 <div class="join-overlay" id="joinOverlay">
-  <div class="join-modal">
-    <button class="join-modal-close" onclick="closeJoinPopup()">×</button>
+  <div class="join-modal" role="dialog" aria-modal="true" aria-labelledby="joinModalTitle">
+    <button type="button" class="join-modal-close" aria-label="Close" onclick="closeJoinPopup()">×</button>
     <div class="join-modal-eyebrow">Kala Studio · Careers</div>
-    <h3 class="join-modal-title">Join the <em>team.</em></h3>
+    <h3 class="join-modal-title" id="joinModalTitle">Join the <em>team.</em></h3>
     <div class="join-divider"></div>
 
     <!-- Role selector -->
@@ -1386,8 +1386,6 @@ const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl
       </div>
       <div class="join-contact-row">
         Or reach us directly:
-        <a href="tel:7472227462">(747) 222-7462</a>
-        &nbsp;·&nbsp;
         <a href="mailto:hello@mykalastudio.com">hello@mykalastudio.com</a>
       </div>
     </div>
@@ -1395,16 +1393,16 @@ const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl
     <!-- Form -->
     <div class="join-form" id="joinForm">
       <div class="join-form-title" id="joinFormTitle"></div>
-      <input class="join-input" id="joinName" placeholder="Your full name" type="text">
-      <input class="join-input" id="joinEmail" placeholder="Your email address" type="email">
-      <input class="join-input" id="joinPhone" placeholder="Your phone number (optional)" type="tel">
-      <textarea class="join-input join-textarea" id="joinMessage" placeholder="Tell us briefly about yourself and your experience..."></textarea>
+      <input class="join-input" id="joinName" aria-label="Your full name" placeholder="Your full name" type="text">
+      <input class="join-input" id="joinEmail" aria-label="Your email address" placeholder="Your email address" type="email">
+      <input class="join-input" id="joinPhone" aria-label="Your phone number (optional)" placeholder="Your phone number (optional)" type="tel">
+      <textarea class="join-input join-textarea" id="joinMessage" aria-label="About you and your experience" placeholder="Tell us briefly about yourself and your experience..."></textarea>
       <button class="join-submit" onclick="submitJoinForm()">Send Application →</button>
       <div style="text-align:center">
         <button class="join-back" onclick="backToRoles()">← Choose a different role</button>
       </div>
       <div class="join-contact-row">
-        Questions? <a href="tel:7472227462">(747) 222-7462</a> · <a href="mailto:hello@mykalastudio.com">hello@mykalastudio.com</a>
+        Questions? <a href="mailto:hello@mykalastudio.com">hello@mykalastudio.com</a>
       </div>
     </div>
 
@@ -1414,14 +1412,22 @@ const _stampsEl=document.getElementById('loyaltyStamps');if(_stampsEl&&_stampsEl
 <script>
 var joinRole = '';
 
+var joinTrigger = null;
 function openJoinPopup(){
+  joinTrigger = document.activeElement;
   document.getElementById('joinOverlay').classList.add('active');
   document.body.style.overflow='hidden';
   backToRoles();
+  var c = document.querySelector('#joinOverlay .join-modal-close');
+  if(c) c.focus();
 }
 function closeJoinPopup(){
-  document.getElementById('joinOverlay').classList.remove('active');
+  var o = document.getElementById('joinOverlay');
+  var wasOpen = o.classList.contains('active');
+  o.classList.remove('active');
   document.body.style.overflow='';
+  if(wasOpen && joinTrigger && joinTrigger.focus){ joinTrigger.focus(); }
+  joinTrigger = null;
 }
 function selectJoinRole(role){
   joinRole = role;
@@ -1455,7 +1461,19 @@ document.getElementById('joinOverlay').addEventListener('click',function(e){
   if(e.target===this) closeJoinPopup();
 });
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape') closeJoinPopup();
+  var o = document.getElementById('joinOverlay');
+  if(!o.classList.contains('active')) return;
+  if(e.key==='Escape'){ closeJoinPopup(); return; }
+  if(e.key==='Tab'){
+    var f = Array.prototype.filter.call(
+      o.querySelectorAll('button, a[href], input, textarea'),
+      function(el){ return el.offsetParent !== null && !el.disabled; });
+    if(!f.length) return;
+    var first = f[0], last = f[f.length-1];
+    if(!o.contains(document.activeElement)){ e.preventDefault(); first.focus(); }
+    else if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  }
 });
 </script>
 
